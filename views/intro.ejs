@@ -1,0 +1,29 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("./constant/header.ejs") -%>
+  <body>
+    <div class="intro-container">
+      <div class="intro-contents">
+      <form action="/user/room?userId=<%=userId%>" method="post">
+        <h2>Select the room that you want to join</h2>
+          <%if(typeof AvlRooms != "undefined"){ %>
+            <select name="room" onfocus='this.size=10;' 
+            onblur='this.size=1;' 
+            onchange='this.size=1; this.blur();'>
+            <div class="opt-height">
+              <%AvlRooms.forEach((item)=>{%>
+                <option value="<%=item.roomName%>"><%=item.roomName%></option>
+              <%})%> 
+            </div>
+          </select>
+          <%}%>
+        <button>
+        <i class="fas fa-arrow-circle-right intro-arrow"></i>
+      </button>
+      </div>
+    </form>
+    </div>
+  </body>
+</html>

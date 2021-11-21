@@ -1,0 +1,87 @@
+<!-- @format -->
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+      integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./public//css//styles.css" />
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;200;300;400;500;600;700&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&family=Roboto+Mono:wght@100;200;300;400;500;600;700&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto+Mono:wght@100;200;300;400;500;600;700&display=swap");
+    </style>
+    <title>Chat app</title>
+  </head>
+  <body>
+    <div class="container">
+      <!-- <div class="header">
+        <nav>
+          <img
+            src="https://cdn.pixabay.com/photo/2021/08/25/20/42/field-6574455__480.jpg"
+            alt="error"
+          />
+          <div class="nav-left">
+            <span>Login</span>
+            <span>Leave room</span>
+          </div>
+        </nav>
+      </div> -->
+      <div class="contents">
+        <div class="sidebar">
+          <div class="user-profile-img">
+            <img src="" alt="" />
+          </div>
+          <div class="room-name">
+            <div class="room-header">
+              <h1>Rooms</h1>
+              <i class="fas fa-sort-down fa-1x dropicon"></i>
+            </div>
+            <div class="rooms-list" id="rooms">
+              <ul>
+                <li>Room name1</li>
+                <li>Room name 2</li>
+                <li>Room name3</li>
+                <li>Room name4</li>
+                <li>Room name5</li>
+              </ul>
+            </div>
+          </div>
+          <!-- <div class="users-list">
+            <h2>Users list</h2>
+            <ul>
+              <li>A</li>
+              <li>A</li>
+              <li>A</li>
+              <li>A</li>
+            </ul>
+          </div> -->
+          <div class="btn">
+            <button>Logout</button>
+          </div>
+        </div>
+        <div class="chatbox">
+          <div class="chats"></div>
+          <div class="chat-form">
+            <form id="chatform">
+              <input type="text" placeholder="type something..." />
+              <button type="submit">send</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./socket.io/socket.io.js"></script>
+    <script src="./public/js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,112 @@
+/** @format */
+
+.auth-container {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #3a3a3a6e;
+  backdrop-filter: blur(7px);
+  z-index: 100;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  animation: fadein 1s cubic-bezier(0.19, 1, 0.22, 1);
+  display: none;
+}
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.auth-contents {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-content: center;
+}
+.auth-box {
+  width: 25rem;
+  height: 14.5rem;
+  /* fallback for old browsers */
+  /* fallback for old browsers */
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: #f1f1f1; /* fallback for old browsers */
+  background: linear-gradient(0deg, #09091009 0%, #333333 100%);
+  border-radius: 8px;
+
+  border: 2px solid #a054eb71;
+  h2 {
+    margin-top: 3rem;
+    text-align: center;
+    font-size: 1.1rem;
+    color: #ffffffc7;
+    font-weight: 400;
+    letter-spacing: 0.9px;
+    margin-top: 2rem;
+  }
+}
+.auth-items {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 12%;
+  div {
+    border-right: 2px solid rgba(255, 255, 255, 0.137);
+    position: relative;
+    z-index: 10;
+    padding: 0 0.4rem;
+    &::before {
+      position: absolute;
+
+      bottom: 0;
+      left: 0;
+      content: "";
+      width: 100%;
+      height: 0.4rem;
+      background-color: #66329ada;
+      z-index: -1;
+
+      transform: scaleX(0);
+      transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+  }
+  div:nth-child(1)::before {
+    transform-origin: right;
+  }
+  div:nth-child(2)::before {
+    transform-origin: left;
+  }
+  div:nth-child(1):hover::before {
+    transform: scaleX(1);
+  }
+  div:nth-child(2):hover::before {
+    transform: scaleX(1);
+  }
+  div:nth-child(1):hover .login-icon {
+    color: #9f54eb;
+  }
+  div:nth-child(2):hover .login-icon {
+    color: #9f54eb;
+  }
+  div:nth-child(2) {
+    border-right: 2px solid rgba(102, 51, 153, 0);
+  }
+  .login-icon {
+    font-size: 2.2rem;
+    color: rgb(255, 255, 255);
+    margin: 0.5rem 2rem;
+    padding-top: 0.1rem;
+    padding-bottom: 0.8rem;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    overflow: hidden;
+    &:hover {
+      color: rgb(252, 252, 252);
+    }
+  }
+}

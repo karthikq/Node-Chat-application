@@ -1,0 +1,144 @@
+/** @format */
+@mixin btn {
+  width: 100%;
+  padding: 0.5rem;
+  outline: 0;
+  border: 2px solid transparent;
+  background-color: #222222;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 0.7px;
+  position: relative;
+  z-index: 3;
+  cursor: pointer;
+  border: 0;
+  &::before {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    content: "";
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #6a3191;
+    z-index: -1;
+
+    transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+    clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+  }
+  &:hover::before {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
+  &:hover {
+    letter-spacing: 1px;
+  }
+}
+
+.room-container {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #161616c2;
+  backdrop-filter: blur(7px);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+.room-box {
+  width: 25rem;
+  height: 15rem;
+  background: linear-gradient(0deg, #09091009 0%, #333333 100%);
+  border-radius: 10px;
+  position: relative;
+  box-shadow: 0px 0px 80px rgba(255, 255, 255, 0.075);
+  .close-icon {
+    position: absolute;
+    top: 1rem;
+    right: 1.1rem;
+    color: rgb(163, 163, 163);
+    font-weight: 200;
+    cursor: pointer;
+    padding: 0.3rem;
+    &:hover {
+      color: #c773ff;
+    }
+  }
+  form {
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    label {
+      color: #d6d6d6;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      position: relative;
+      bottom: 0.4em;
+    }
+    .create-input {
+      width: 70%;
+      position: relative;
+
+      &::after {
+        position: absolute;
+        bottom: 0.5rem;
+        left: 0;
+        padding-right: 0.5rem;
+        content: "";
+        width: 100%;
+        height: 0.1rem;
+        background-color: #6a3191;
+        transition: all 0.2s ease-in-out;
+        transform: scaleX(0);
+        transform-origin: left;
+      }
+      &:hover::after {
+        transform: scaleX(1);
+      }
+      &:focus::after {
+        transform: scaleX(1);
+      }
+    }
+    input {
+      font-family: "Poppins", sans-serif;
+      width: 100%;
+      padding: 0.35rem 0.4rem;
+      margin: 0.5rem 0;
+      background-color: transparent;
+      color: #c773ff;
+      border: 0;
+      outline: 0;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.247);
+      font-size: 1rem;
+      text-transform: lowercase;
+      font-weight: 400;
+      transition: all 0.45s cubic-bezier(0.19, 1, 0.22, 1);
+      border-radius: 5px;
+      &::placeholder {
+        font-size: 0.9rem;
+      }
+    }
+    .createformerror {
+      color: rgb(194, 194, 194);
+      font-size: 0.8rem;
+      letter-spacing: 0.9px;
+      font-weight: 200;
+      display: none;
+    }
+
+    button {
+      @include btn();
+      margin-top: 1.8rem;
+      width: 8rem;
+      padding: 0.3rem;
+    }
+  }
+}

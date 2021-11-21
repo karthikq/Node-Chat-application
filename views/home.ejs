@@ -1,0 +1,221 @@
+<!-- @format -->
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("./constant/header.ejs") %>
+  <body>
+    <div class="container">
+      <!-- <div class="header">
+        <nav>
+          <img
+            src="https://cdn.pixabay.com/photo/2021/08/25/20/42/field-6574455__480.jpg"
+            alt="error"
+          />
+          <div class="nav-left">
+            <span>Login</span>
+            <span>Leave room</span>
+          </div>
+        </nav>
+      </div> -->
+      <%- include("./modal/login.ejs") %>
+      <%- include("./modal/createRoom.ejs")  %> 
+
+      <div class="contents">
+        <div class="sidebar">
+          <div class="create-room-bar"  id="createRoomBtn" ><i class="fas fa-plus create-icon"></i>
+            <span>Create Room</span>
+          </div>
+         
+        
+          <input type="hidden" value="<%=auth%>" id="authValue" />
+          <div class="active-room-s">
+            <span></span>
+          </div>
+          <div class="room-name">
+            <div class="room-header">
+              <h1><i class="fas fa-server room-icon"></i>Rooms</h1>
+              <i
+                class="fas fa-chevron-down fa-1x dropicon"
+            
+              ></i>
+            </div>
+           
+            <div class="rooms-list room-close">
+              <ul id="rooms-ul">
+                <% if(typeof details !== "undefined"){ %>
+                <%AvlRooms.forEach((item)=>{%>
+                  <li>
+                    <a class="a-main" href="/room/?roomName=<%=item.roomName%>&user=<%=details.userId%>">
+                      <%=item.roomName%>
+                    </a>
+                  </li>
+               <%})%> 
+                 
+                <%}else{%>
+                <li>Login first</li>
+                <%}%>
+              </ul>
+            </div>
+      
+           
+          </div>
+          <div class="btn">
+            <% if(typeof details !== "undefined"){%>
+            <a href="/auth/user/logout"> <button>Logout</button></a>
+            <% }else{%>
+            <button id="loginbtn">Login</button>
+            <% } %>
+          </div>
+          <!-- <div class="users-list">
+            <h2>Users list</h2>
+            <ul>
+              <li>A</li>
+              <li>A</li>
+              <li>A</li>
+              <li>A</li>
+            </ul>
+          </div> -->
+        
+        </div>
+        <div class="chatbox">        
+         
+          <div class="chats ">
+            <% if(chats.length > 0 ){ %> 
+              <% chats.forEach((text,index)=>{ %>
+               
+              <%if(chats[index-1] && chats[index].userDetails.userId === chats[index-1].userDetails.userId){%>
+                <% appendElements = function(tree){ %>
+                  <div class="<%=details.username === text.username ? "chat-item user-chat-list" : "chat-item chats-left user-chat-list"%>">
+                    <div class="chatdetails" 
+                    id="<%=text.userDetails.userId%>">
+                   <div class="chatdetails" >
+                     
+                    <%if(text.userText){%>
+                      <p><%=text.userText%></p>
+                    <%}%> 
+                    <%if(text.userImg){%> 
+                      <div class="chat-imgbox" >
+                        <img src=<%=text.userImg%> alt="error" class="image-chat" />
+                        <div class="chat-imgdownload" >
+                          <a download="<%=text.userImg%>"  href="<%=text.userImg%>" target="_blank" rel="noreferrer">
+                            <i class="fas fa-cloud-download-alt download-icon"></i>
+                          </a>
+                          </div>
+                      </div>
+                    <%}%>
+                   </div>
+                   </div>
+                   </div>
+                <%}%>
+               <%appendElements(chats[index].userDetails.userId,text)%>
+
+              <%}else{%>
+                <div class="<%=details.username === text.username ? "chat-item" : "chat-item chats-left"%>"">
+                  <div class="chatdetails" 
+                  id="<%=text.userDetails.userId%>">
+                  <div class="chat-dots" >
+                    <i class="fas fa-ellipsis-h dot-icon"></i>
+                   </div>
+                <div class="chat-user-details" >
+                  <img src ="<%=text.userDetails.profileUrl%>" alt="profile Url" class="profile-img" >
+                   <span class="user-name" ><%=text.username%></span>
+                   <span class="user-date" ><%=text.date%></span>
+                  </div>
+                  <%if(text.userText){%>
+                    <p class="no-bg"><%=text.userText%></p>
+                  <%}%> 
+                    <%if(text.userImg){%> 
+                      <div class="chat-imgbox" >
+                        <img src=<%=text.userImg%> alt="error" class="image-chat" />
+                        <div class="chat-imgdownload" >
+                          <a download="<%=text.userImg%>"  href="<%=text.userImg%>" target="_blank"  rel="noreferrer">
+                          <i class="fas fa-cloud-download-alt download-icon"></i>
+                          </a>
+                        </div>
+                      </div>
+                      <%}%>
+                </div>
+              </div>
+                <%}%> 
+            <%})}%>
+     
+          </div>
+          <div class="chat-form">
+            <div class="select">
+              <p>Select the format of message</p>
+              <select id="selectOpt">
+                <option value="text">Text</option>
+                <option value="file">Image</option>
+              </select>
+              <progress max="100" id="progressbar"></progress>
+              <img src="" alt="error" id="imgOpt" />
+
+              <!-- <p>Choose another image to cancel</p> -->
+            </div>
+            <form id="chatform">
+              <% if(typeof details !== "undefined"){%>
+              <input type="hidden" value="<%=details.userId%>" id="userIdValue" />
+              <%}%>
+
+              <input
+                type="text"
+                placeholder="type something..."
+                id="inputOpt"
+                required
+              />
+              <button type="submit" id="submitBtn">send</button>
+            </form>
+          </div>
+        </div>
+        <div class="sidebar-right" >
+          <div class="user-info" >
+            <div class="user-profile-img">
+              <% if(typeof details !== "undefined"){ %>
+              <img src="<%=details.profileUrl%>" alt="profielurl" />
+              <%}else{%><img
+                src="https://www.w3schools.com/howto/img_avatar.png"
+                alt="profiel url"
+              />
+              <%}%>
+            </div>
+            <p>User Information</p>
+            <div class="user-info-contents" >
+              <ul>
+                <% if(typeof details !== "undefined"){ %>
+                  <li> <div class="active-status">
+                    Status
+                    <div class="green-light" ></div>
+                  </div>
+                  <li>Name : <%=details.username%>  </li>
+                  <li>Email : <%=details.email%></li>
+                  <% }else{%>
+                 <li>Not logged in</li>
+                  <% }%> 
+            
+               
+              </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./socket.io/socket.io.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.10.1/qs.min.js"
+      integrity="sha512-aTKlYRb1QfU1jlF3k+aS4AqTpnTXci4R79mkdie/bp6Xm51O5O3ESAYhvg6zoicj/PD6VYY0XrYwsWLcvGiKZQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script> -->
+    <script src="/js/createRoom.js"></script>
+    <script src="/js/CreateImg.js"  type="module" ></script>
+    <script src="/js/main.js"  type="module"></script>
+    <script src="/js/Images.js" type="module"></script>
+    
+  </body>
+</html>

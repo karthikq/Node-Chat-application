@@ -1,0 +1,22 @@
+<!-- @format -->
+
+<div class="room-container" id="createFormContainer">
+  <div class="room-box">
+    <i class="far fa-times-circle close-icon" id="closeIcon"></i>
+    <form id="createForm">
+      <label>Enter Room Name</label>
+      <div class="create-input">
+        <input
+          type="text"
+          name="roomName"
+          required
+          placeholder="eg:design"
+          maxlength="15"
+          title="max 15 characters"
+        />
+      </div>
+      <span class="createformerror">Room Already Exists</span>
+      <button type="submit" id="createSubmitBtn">create</button>
+    </form>
+  </div>
+</div>

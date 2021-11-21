@@ -114,7 +114,12 @@ function outputMessage(msg) {
 
     if (msg.userText) {
       const tag = document.createElement("div");
-      tag.classList.add("chat-item", "user-chat-list");
+      tag.classList.add(
+        "chat-item",
+        "user-chat-list",
+        "chats-left",
+        "left-align"
+      );
       const item = `<div class="chatdetails" >
                    <p>${msg.userText}</p>
                    </div>`;

@@ -109,43 +109,51 @@ loginFrom.addEventListener("click", (e) => {
   }
 });
 function outputMessage(msg) {
+  console.log(msg.prevUserId, msg.userDetails.userId);
   if (msg.prevUserId && msg.prevUserId === msg.userDetails.userId) {
     const userList = document.querySelectorAll("#" + msg.prevUserId);
 
-    if (msg.userText) {
-      const tag = document.createElement("div");
-      tag.classList.add(
+    const div = document.createElement("div");
+
+    if (userIdValue.value === msg.userDetails.userId) {
+      div.classList.add("chat-item", "user-chat-list");
+      opData(div);
+    } else {
+      div.classList.add(
         "chat-item",
-        "user-chat-list",
         "chats-left",
+        "user-chat-list",
         "left-align"
       );
-      const item = `<div class="chatdetails" >
-                   <p>${msg.userText}</p>
-                   </div>`;
-      tag.innerHTML = item;
+      opData(div);
+    }
+    function opData(div) {
+      if (msg.userText) {
+        const item = `<div class="chatdetails" >
+                     <p>${msg.userText}</p>
+                     </div>`;
+        div.innerHTML = item;
 
-      chatsContainer.appendChild(tag);
-    } else {
-      const tag = document.createElement("div");
-      tag.classList.add("chat-item", "user-chat-list");
+        chatsContainer.appendChild(div);
+      } else {
+        const item = `<div class="chatdetails" >
+                       <div class="chat-imgbox" >
+                         <img src=${msg.userImg} alt="error" class="image-chat" />
+                          <div class="chat-imgdownload">
+                          <a download=${msg.userImg} href=${msg.userImg} target="_blank" rel="noreferrer">
+                           <i class="fas fa-cloud-download-alt download-icon"></i>
+                          </a>
+                         </div>
+                        </div>
+                      </div>`;
+        div.innerHTML = item;
 
-      const item = `<div class="chatdetails" >
-                     <div class="chat-imgbox" > 
-                       <img src=${msg.userImg} alt="error" class="image-chat" /> 
-                        <div class="chat-imgdownload">
-                        <a download=${msg.userImg} href=${msg.userImg} target="_blank" rel="noreferrer">
-                         <i class="fas fa-cloud-download-alt download-icon"></i>
-                        </a>
-                       </div>
-                      </div>
-                    </div>`;
-      tag.innerHTML = item;
-
-      chatsContainer.appendChild(tag);
+        chatsContainer.appendChild(div);
+      }
     }
   } else {
     const div = document.createElement("div");
+    console.log(userIdValue.value, msg.userDetails.userId);
     if (userIdValue.value === msg.userDetails.userId) {
       div.classList.add("chat-item", "user-chat-list");
       outputHtml();

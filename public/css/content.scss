@@ -227,8 +227,10 @@
     }
   }
   .btn {
-    justify-self: flex-end;
+    position: absolute;
+    bottom: 0;
     width: 90%;
+
     margin-top: 5rem;
     margin-bottom: 2rem;
     button {
@@ -372,6 +374,18 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 0.9rem;
+            .status-select-dp {
+              width: 6rem;
+              select {
+                font-family: "Poppins", sans-serif;
+                font-size: 0.8rem;
+                width: 100%;
+                padding: 0.1rem 0.3rem;
+                background-color: #3a3a3a;
+                color: white;
+              }
+            }
             .green-light {
               justify-self: flex-start;
               position: relative;
@@ -401,7 +415,108 @@
     }
   }
 }
+.room-userlist {
+  width: 90%;
+  padding: 0 0.5rem;
 
+  margin: 1rem auto;
+  h2 {
+    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.904);
+    font-weight: 400;
+    font-size: 1.05rem;
+    letter-spacing: 0.5px;
+    text-align: right;
+  }
+  .room-userlist-container {
+    width: 100%;
+    height: 40vh;
+    padding-top: 0.5rem;
+    padding-bottom: 0.8rem;
+    overflow-y: auto;
+    padding-right: 0.8rem;
+    overflow-x: hidden;
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+    &::-webkit-scrollbar-track {
+      background: #2e2e2e;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #505050;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background: #818181;
+    }
+  }
+
+  .room-userlist-box {
+    width: 97%;
+    margin: 0 auto;
+    height: 50px;
+    background-color: rgb(36, 36, 36);
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.8rem;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0px 10px 20px rgba(255, 255, 255, 0);
+    transition: all 0.45s cubic-bezier(0.19, 1, 0.22, 1);
+    cursor: pointer;
+    border: 2px solid rgba(255, 255, 255, 0.096);
+    &:hover {
+      transform: scale(1.02);
+      box-shadow: 0px 10px 20px rgba(255, 255, 255, 0.075);
+      border: 2px solid rgba(255, 255, 255, 0.233);
+    }
+    .room-userlist-details {
+      width: 10rem;
+      display: flex;
+      justify-content: flex-start;
+      margin-left: 0.5rem;
+      img {
+        width: 30px;
+        height: 30px;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+      span {
+        margin-left: 0.6rem;
+        color: rgba(255, 255, 255, 0.63);
+        align-self: flex-start;
+        font-size: 0.8rem;
+        font-weight: 300;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        letter-spacing: 0.5px;
+      }
+    }
+    .room-user-status {
+      width: 10px;
+      height: 10px;
+      margin-right: 0.5rem;
+      border-radius: 50%;
+    }
+    .green-s {
+      background-color: rgb(24, 226, 41);
+    }
+    .red-s {
+      background-color: rgb(235, 28, 28);
+    }
+    .green-s {
+      background-color: rgb(5, 146, 47);
+    }
+    .black-s {
+      background-color: rgb(0, 0, 0);
+    }
+    .darkblue-s {
+      background-color: rgb(43, 3, 138);
+    }
+    .blue-s {
+      background-color: rgb(28, 159, 235);
+    }
+  }
+}
 .chats {
   width: 100%;
 
@@ -441,14 +556,61 @@
       .chat-dots {
         position: absolute;
         bottom: -0.6rem;
-        right: 0;
-        z-index: 50;
+        right: 0.2rem;
+
         .dot-icon {
-          padding: 0.15rem 0.2rem;
+          padding: 0.25rem 0.3rem;
           font-size: 0.8rem;
           color: rgb(163, 163, 163);
+          position: relative;
+          z-index: 50;
           &:hover {
             color: white;
+          }
+        }
+        .drop-icon-rotate {
+          transform: rotate(90deg);
+          position: relative;
+          bottom: 1rem;
+          right: 0.2rem;
+        }
+        .dropdown-chat {
+          display: none;
+          position: absolute;
+          top: 1.4rem;
+          right: 0;
+          width: 100px;
+          z-index: 120 !important;
+          height: auto;
+          padding: 0.5rem 0.7rem;
+          color: white;
+          background-color: rgb(19, 19, 19);
+          border: 2px solid #a154ee28;
+          text-align: right;
+          border-radius: 5px;
+          .dropdown-item {
+            display: block;
+            margin: 0.5rem 0;
+            font-size: 0.9rem;
+
+            &:hover {
+              color: #a154ee;
+            }
+          }
+        }
+        .dropdown-chat-active {
+          display: block;
+
+          animation: animate 1s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        @keyframes animate {
+          0% {
+            transform: translateY(20px);
+            opacity: 0;
+          }
+          100% {
+            transform: translateY(0);
+            opacity: 1;
           }
         }
       }
@@ -522,7 +684,7 @@
     margin: 0.9rem 0 0.3rem;
     color: #ffffff;
     background-color: rgb(11, 85, 146);
-    padding: 0.15rem 0.7rem;
+    padding: 0.2rem 1.2rem 0.3rem 0.7rem;
     border-radius: 10px;
     line-height: 1.8;
     &:hover {

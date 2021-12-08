@@ -89,8 +89,18 @@
                   <div class="<%=details.username === text.username ? "chat-item user-chat-list" : "chat-item chats-left user-chat-list"%>">
                     <div class="chatdetails" 
                     id="<%=text.userDetails.userId%>">
-                   <div class="chatdetails" >
-                     
+                   <div class="chatdetails">
+                     <% if(details.userId === text.userDetails.userId){%>
+                      <div class="chat-dots" id="<%=text.chatId%>">
+                        <i class="fas fa-ellipsis-h dot-icon drop-icon-rotate"></i>
+                        <div class="dropdown-chat">
+                          <input type="hidden" value="<%=text.chatId%>" id="chat_Id" >
+                          
+                          <span class="dropdown-item chat-delete-item"  >Delete</span>
+                          <span class="dropdown-item">Information</span>
+                        </div>
+                      </div>
+                     <%}%> 
                     <%if(text.userText){%>
                       <p><%=text.userText%></p>
                     <%}%> 
@@ -114,9 +124,17 @@
                 <div class="<%=details.username === text.username ? "chat-item" : "chat-item chats-left"%>"">
                   <div class="chatdetails" 
                   id="<%=text.userDetails.userId%>">
-                  <div class="chat-dots" >
-                    <i class="fas fa-ellipsis-h dot-icon"></i>
-                   </div>
+                  <% if(details.userId === text.userDetails.userId){%>
+                    <div class="chat-dots" id="<%=text.chatId%>">
+                      <i class="fas fa-ellipsis-h dot-icon "></i>
+                      <div class="dropdown-chat">
+                        <input type="hidden" value="<%=text.chatId%>" id="chat_Id" >
+                        
+                        <span class="dropdown-item chat-delete-item"  >Delete</span>
+                        <span class="dropdown-item">Information</span>
+                      </div>
+                    </div>
+                   <%}%> 
                 <div class="chat-user-details" >
                   <img src ="<%=text.userDetails.profileUrl%>" alt="profile Url" class="profile-img" >
                    <span class="user-name" ><%=text.username%></span>
@@ -185,7 +203,17 @@
                 <% if(typeof details !== "undefined"){ %>
                   <li> <div class="active-status">
                     Status
-                    <div class="green-light" ></div>
+                    <div class="status-select-dp" >
+                      <input type="hidden" value="<%=details.userId%>" id="userchatId">
+                    <select name="status" id="status-select" onchange="handleStatuschange()"  >
+           
+                      <%var options = [ "active", "offline", "busy", "driving","gaming" ]; %>
+                     <%for ( var i = 0; i < options.length; i++ ){ %>
+                         <% var selected = ( details.activeStatus === options[i] ) ? "selected" : ""; %>
+                          <option value="<%=options[i]%>" <%=selected%>><%=options[i]%></option> 
+                      <%}%>
+                    </select>
+                  </div>
                   </div>
                   <li>Name : <%=details.username%>  </li>
                   <li>Email : <%=details.email%></li>
@@ -198,7 +226,37 @@
               </ul>
             </div>
           </div>
-        </div>
+          <% if(typeof details !== "undefined"){%>
+            <div class="room-userlist" >
+              <h2>Users List</h2>
+              <div class="room-userlist-container" >
+                <% if(typeof chatusers !== "undefined"){ %>
+                  <%chatusers.forEach((user)=>{ %>
+                    <div class="room-userlist-box" >
+                      <div class="room-userlist-details" >
+                        <img class="user-avatar" src="<%=user.profileUrl%>" alt="user profile img">
+                        <span><%=user.username%></span>
+                      </div>
+               
+                     <% if (user.activeStatus === "offline") { %>
+                          <div title="offline" class="room-user-status set-status red-s" id="<%=user.userId+2%>"  ></div>
+                     <% } else if (user.activeStatus === "active") { %>
+                        <div title="active" class="room-user-status set-status green-s"  id="<%=user.userId+2%>"  ></div>
+                      <%} else if (user.activeStatus=== "busy") { %>
+                        <div title="busy" style="background-color: rgb(5, 17, 122);" class="room-user-status set-status blue-s"  id="<%=user.userId+2%>"  ></div>
+                      <%} else if (user.activeStatus === "gaming") { %>
+                        <div title="gaming" style="background-color: white;" class="room-user-status set-status"   id="<%=user.userId+2%>"   ></div>
+                      <%} else { %>
+                        <div title="none" class="room-user-status set-status"  id="<%=user.userId+2%>" ></div>
+                      <%} %>
+                         
+                   </div>
+                 <%})%> 
+                <%}%> 
+            </div>
+          </div> 
+          <%}%> 
+         
       </div>
     </div>
     <script src="./socket.io/socket.io.js"></script>
@@ -212,10 +270,11 @@
   src="https://code.jquery.com/jquery-3.6.0.min.js"
   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
   crossorigin="anonymous"></script> -->
+ 
+    <script src="/js/Dropdown.js"></script>
     <script src="/js/createRoom.js"></script>
     <script src="/js/CreateImg.js"  type="module" ></script>
     <script src="/js/main.js"  type="module"></script>
     <script src="/js/Images.js" type="module"></script>
-    
   </body>
 </html>

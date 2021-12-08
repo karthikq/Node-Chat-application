@@ -5,13 +5,9 @@ const Room = require("../models/Rooms");
 const formatMessage = require("./formatMessage");
 
 function message(io) {
-  const username = "bot";
-
   io.on("connection", (socket) => {
     // socket.emit("message", formatMessage(username, "Welcome to the chat"));
     socket.on("joinRoom", async ({ room, user }) => {
-      console.log(room, user);
-
       //fetchUser
 
       const userDetails = await User.findOne({ userId: user });
@@ -27,10 +23,7 @@ function message(io) {
             },
             {
               $push: {
-                users: {
-                  userName: userDetails.userName,
-                  userId: user,
-                },
+                users: userDetails,
               },
             }
           );
@@ -40,10 +33,8 @@ function message(io) {
       } else {
         const rooms = new Room({
           roomName: room,
-          users: {
-            userName: userDetails.userName,
-            userId: user,
-          },
+          createdBy: userDetails.userId,
+          users: userDetails,
         });
         await rooms.save();
         socket.join(room);

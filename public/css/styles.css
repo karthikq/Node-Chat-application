@@ -335,7 +335,8 @@ body {
   }
 }
 .sidebar .btn {
-  justify-self: flex-end;
+  position: absolute;
+  bottom: 0;
   width: 90%;
   margin-top: 5rem;
   margin-bottom: 2rem;
@@ -508,6 +509,18 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 0.9rem;
+}
+.sidebar-right .user-info .user-info-contents ul li .active-status .status-select-dp {
+  width: 6rem;
+}
+.sidebar-right .user-info .user-info-contents ul li .active-status .status-select-dp select {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.8rem;
+  width: 100%;
+  padding: 0.1rem 0.3rem;
+  background-color: #3a3a3a;
+  color: white;
 }
 .sidebar-right .user-info .user-info-contents ul li .active-status .green-light {
   justify-self: flex-start;
@@ -529,6 +542,98 @@ body {
   height: 100%;
   object-fit: cover;
   border-radius: 5px;
+}
+
+.room-userlist {
+  width: 90%;
+  padding: 0 0.5rem;
+  margin: 1rem auto;
+}
+.room-userlist h2 {
+  margin-bottom: 1rem;
+  color: rgba(255, 255, 255, 0.904);
+  font-weight: 400;
+  font-size: 1.05rem;
+  letter-spacing: 0.5px;
+  text-align: right;
+}
+.room-userlist .room-userlist-container {
+  width: 100%;
+  height: 40vh;
+  padding-top: 0.5rem;
+  padding-bottom: 0.8rem;
+  overflow-y: auto;
+  padding-right: 0.8rem;
+  overflow-x: hidden;
+}
+.room-userlist .room-userlist-container::-webkit-scrollbar {
+  width: 8px;
+}
+.room-userlist .room-userlist-container::-webkit-scrollbar-track {
+  background: #2e2e2e;
+}
+.room-userlist .room-userlist-container::-webkit-scrollbar-thumb {
+  background: #505050;
+}
+.room-userlist .room-userlist-container::-webkit-scrollbar-thumb:hover {
+  background: #818181;
+}
+.room-userlist .room-userlist-box {
+  width: 97%;
+  margin: 0 auto;
+  height: 50px;
+  background-color: #242424;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.8rem;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0px 10px 20px rgba(255, 255, 255, 0);
+  transition: all 0.45s cubic-bezier(0.19, 1, 0.22, 1);
+  cursor: pointer;
+  border: 2px solid rgba(255, 255, 255, 0.096);
+}
+.room-userlist .room-userlist-box:hover {
+  transform: scale(1.02);
+  box-shadow: 0px 10px 20px rgba(255, 255, 255, 0.075);
+  border: 2px solid rgba(255, 255, 255, 0.233);
+}
+.room-userlist .room-userlist-box .room-userlist-details {
+  width: 10rem;
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 0.5rem;
+}
+.room-userlist .room-userlist-box .room-userlist-details img {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.room-userlist .room-userlist-box .room-userlist-details span {
+  margin-left: 0.6rem;
+  color: rgba(255, 255, 255, 0.63);
+  align-self: flex-start;
+  font-size: 0.8rem;
+  font-weight: 300;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0.5px;
+}
+.room-userlist .room-userlist-box .room-user-status {
+  width: 10px;
+  height: 10px;
+  margin-right: 0.5rem;
+  border-radius: 50%;
+}
+.room-userlist .room-userlist-box .green-s {
+  background-color: #18e229;
+}
+.room-userlist .room-userlist-box .red-s {
+  background-color: #eb1c1c;
+}
+.room-userlist .room-userlist-box .blue-s {
+  background-color: #1c9feb;
 }
 
 .chats {
@@ -564,16 +669,60 @@ body {
 .chats .chat-item .chatdetails .chat-dots {
   position: absolute;
   bottom: -0.6rem;
-  right: 0;
-  z-index: 50;
+  right: 0.2rem;
 }
 .chats .chat-item .chatdetails .chat-dots .dot-icon {
-  padding: 0.15rem 0.2rem;
+  padding: 0.25rem 0.3rem;
   font-size: 0.8rem;
   color: #a3a3a3;
+  position: relative;
+  z-index: 50;
 }
 .chats .chat-item .chatdetails .chat-dots .dot-icon:hover {
   color: white;
+}
+.chats .chat-item .chatdetails .chat-dots .drop-icon-rotate {
+  transform: rotate(90deg);
+  position: relative;
+  bottom: 1rem;
+  right: 0.2rem;
+}
+.chats .chat-item .chatdetails .chat-dots .dropdown-chat {
+  display: none;
+  position: absolute;
+  top: 1.4rem;
+  right: 0;
+  width: 100px;
+  z-index: 120 !important;
+  height: auto;
+  padding: 0.5rem 0.7rem;
+  color: white;
+  background-color: #131313;
+  border: 2px solid #a154ee28;
+  text-align: right;
+  border-radius: 5px;
+}
+.chats .chat-item .chatdetails .chat-dots .dropdown-chat .dropdown-item {
+  display: block;
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+}
+.chats .chat-item .chatdetails .chat-dots .dropdown-chat .dropdown-item:hover {
+  color: #a154ee;
+}
+.chats .chat-item .chatdetails .chat-dots .dropdown-chat-active {
+  display: block;
+  animation: animate 1s cubic-bezier(0.19, 1, 0.22, 1);
+}
+@keyframes animate {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 .chats .user-chat-list {
   padding: 0;
@@ -642,7 +791,7 @@ body {
   margin: 0.9rem 0 0.3rem;
   color: #ffffff;
   background-color: #0b5592;
-  padding: 0.15rem 0.7rem;
+  padding: 0.2rem 1.2rem 0.3rem 0.7rem;
   border-radius: 10px;
   line-height: 1.8;
 }

@@ -109,7 +109,7 @@ loginFrom.addEventListener("click", (e) => {
   }
 });
 function outputMessage(msg) {
-  console.log(msg.prevUserId, msg.userDetails.userId);
+  // console.log(msg.prevUserId, msg.userDetails.userId);
   if (msg.prevUserId && msg.prevUserId === msg.userDetails.userId) {
     const userList = document.querySelectorAll("#" + msg.prevUserId);
 
@@ -130,6 +130,15 @@ function outputMessage(msg) {
     function opData(div) {
       if (msg.userText) {
         const item = `<div class="chatdetails" >
+                        <div class="chat-dots" id=${msg.chatId}>
+                        <i onclick="handleDots(${msg.chatId})" class="fas fa-ellipsis-h dot-icon drop-icon-rotate"></i>
+                        <div class="dropdown-chat">
+                        <input type="hidden" value=${msg.chatId} id="chat_Id" >
+       
+                         <span onclick="handleChatDelete(${msg.chatId})" class="dropdown-item chat-delete-item"  >Delete</span>
+                         <span class="dropdown-item">Information</span>
+                       </div>
+                      </div>
                      <p>${msg.userText}</p>
                      </div>`;
         div.innerHTML = item;
@@ -137,6 +146,15 @@ function outputMessage(msg) {
         chatsContainer.appendChild(div);
       } else {
         const item = `<div class="chatdetails" >
+                       <div class="chat-dots" id=${msg.chatId}>
+                       <i  onclick="handleDots(${msg.chatId})" class="fas fa-ellipsis-h dot-icon drop-icon-rotate"></i>
+                       <div class="dropdown-chat">
+                       <input type="hidden" value=${msg.chatId} id="chat_Id" >
+
+                        <span onclick="handleChatDelete(${msg.chatId})" class="dropdown-item chat-delete-item"  >Delete</span>
+                         <span class="dropdown-item">Information</span>
+                       </div>
+                     </div>
                        <div class="chat-imgbox" >
                          <img src=${msg.userImg} alt="error" class="image-chat" />
                           <div class="chat-imgdownload">
@@ -168,27 +186,40 @@ function outputMessage(msg) {
     }
     function outputHtml() {
       div.innerHTML = `<div class="chatdetails" id=${msg.userDetails.userId}> 
-  <div class="chat-user-details" >
-  <img src =${
-    msg.userDetails.profileUrl
-  } alt="profile Url" class="profile-img" >
-   <span class="user-name" >${msg.username}</span>
-   <span class="user-date" >${msg.date}</span>
-  </div>
- ${msg.userText && `<p class="no-bg">${msg.userText}</p>`}
-  ${
-    msg.userImg &&
-    `<div class="chat-imgbox" >
-       <img src=${msg.userImg} alt="error" class="image-chat" /> 
-       <div class="chat-imgdownload">
-        <a download=${msg.userImg} href=${msg.userImg} target="_blank" rel="noreferrer">
-        <i class="fas fa-cloud-download-alt download-icon"></i>
-       </a>
-      </div>
+                        <div class="chat-dots" id=${msg.chatId}>
+                         <i  onclick="handleDots(${
+                           msg.chatId
+                         })"  class="fas fa-ellipsis-h dot-icon"></i>
+                         <div class="dropdown-chat">
+                         <input type="hidden" value=${msg.chatId} id="chat_Id" >
+                        
+                          <span onclick="handleChatDelete(${
+                            msg.chatId
+                          })"  class="dropdown-item chat-delete-item">Delete</span>
+                          <span class="dropdown-item">Information</span>
+                        </div>
+                       </div>
+                      <div class="chat-user-details" >
+                     <img src =${
+                       msg.userDetails.profileUrl
+                     } alt="profile Url" class="profile-img" >
+                      <span class="user-name" >${msg.username}</span>
+                      <span class="user-date" >${msg.date}</span>
+                     </div>
+                    ${msg.userText && `<p class="no-bg">${msg.userText}</p>`}
+                     ${
+                       msg.userImg &&
+                       `<div class="chat-imgbox" >
+                        <img src=${msg.userImg} alt="error" class="image-chat" /> 
+                        <div class="chat-imgdownload">
+                         <a download=${msg.userImg} href=${msg.userImg} target="_blank" rel="noreferrer">
+                         <i class="fas fa-cloud-download-alt download-icon"></i>
+                        </a>
+                       </div>
 
-    </div>
+                     </div>
     `
-  }
+                     }
   </div>`;
       chatsContainer.appendChild(div);
       chatbox.scrollTo(0, chatbox.scrollHeight);

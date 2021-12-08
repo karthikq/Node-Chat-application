@@ -21,18 +21,15 @@ route.get("/", async (req, res) => {
       res.render("home", {
         details: userDetails,
         chats: chatDetails.chats,
+        chatusers: chatDetails.users,
         auth: true,
         AvlRooms,
       });
     } else {
       const newRoom = new Room({
         roomName: room,
-        users: [
-          {
-            userId: userDetails.userId,
-            username: userDetails.username,
-          },
-        ],
+        createBy: userDetails.userId,
+        users: userDetails,
       });
       await newRoom.save();
       const AvlRooms = await Room.find({});
@@ -81,4 +78,43 @@ route.post("/room/create", async (req, res) => {
   }
 });
 
+route.delete("/chat/delete/:id", async (req, res) => {
+  console.log(req.query.room);
+  const chatid = req.params.id;
+  const chatroom = req.query.room;
+  const deletedChat = await Room.findOneAndUpdate(
+    { roomName: chatroom },
+    {
+      $pull: { chats: { chatId: chatid } },
+    },
+    {
+      new: true,
+    }
+  );
+
+  res.json(deletedChat);
+});
+route.patch("/update/status", async (req, res) => {
+  console.log(req.body);
+  const { user, room, status } = req.body;
+  const updateUser = await User.findOneAndUpdate(
+    { userId: user },
+    {
+      $set: { activeStatus: status },
+    },
+    {
+      new: true,
+    }
+  );
+  const updateChatuser = await Room.findOneAndUpdate(
+    { "users.userId": user },
+    {
+      $set: { "users.$.activeStatus": status },
+    },
+    {
+      new: true,
+    }
+  );
+  res.json(updateChatuser);
+});
 module.exports = route;

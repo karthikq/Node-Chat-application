@@ -5,9 +5,11 @@ const User = require("./User");
 
 const roomSchema = new mongoose.Schema({
   roomName: String,
-  users: [{ userName: String, userId: String }],
+  createdBy: String,
+  users: [],
   chats: [
     {
+      chatId: String,
       userText: String,
       userImg: String,
       date: String,

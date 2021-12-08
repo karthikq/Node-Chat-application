@@ -8,8 +8,13 @@ const UserSchema = new mongoose.Schema({
   profileUrl: String,
   email: String,
   userId: String,
+  activeStatus: {
+    type: String,
+    default: "active",
+  },
   chats: [
     {
+      chatId: String,
       userText: String,
       userImg: String,
       date: String,

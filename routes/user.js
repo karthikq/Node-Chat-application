@@ -79,7 +79,6 @@ route.post("/room/create", async (req, res) => {
 });
 
 route.delete("/chat/delete/:id", async (req, res) => {
-  console.log(req.query.room);
   const chatid = req.params.id;
   const chatroom = req.query.room;
   const deletedChat = await Room.findOneAndUpdate(
@@ -95,7 +94,6 @@ route.delete("/chat/delete/:id", async (req, res) => {
   res.json(deletedChat);
 });
 route.patch("/update/status", async (req, res) => {
-  console.log(req.body);
   const { user, room, status } = req.body;
   const updateUser = await User.findOneAndUpdate(
     { userId: user },
@@ -115,6 +113,45 @@ route.patch("/update/status", async (req, res) => {
       new: true,
     }
   );
+  const update2 = await Room.updateMany(
+    { "chats.$[].userDetails.userId": updateUser.userId },
+    {
+      $set: { "chats.$[].userDetails.activeStatus": status },
+    }
+  );
   res.json(updateChatuser);
+});
+
+route.get("/chat/details/:id", async (req, res) => {
+  const chatid = req.params.id;
+  const room = req.query.room;
+
+  const findRoom = await Room.findOne({ roomName: room });
+  if (findRoom) {
+    const chat = findRoom.chats.find((item) => item.chatId === chatid);
+    res.json(chat);
+  } else {
+    res.status(404).send("no chat found");
+  }
+});
+route.get("/chat/prevchat/:id", async (req, res) => {
+  const id = req.params.id;
+  const room = req.query.room;
+
+  const findprevChat = await Room.findOne({
+    roomName: room,
+    "chats.chatId": id,
+  });
+
+  const index = findprevChat.chats.findIndex(
+    (item, index) => item.chatId === id
+  );
+  const prevChatId = findprevChat.chats[index - 1];
+
+  if (prevChatId) {
+    res.json(prevChatId.chatId);
+  } else {
+    res.json("#1");
+  }
 });
 module.exports = route;

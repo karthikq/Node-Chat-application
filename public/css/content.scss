@@ -289,7 +289,7 @@
   flex-wrap: wrap;
 
   &::-webkit-scrollbar {
-    width: 5px;
+    width: 10px;
   }
   &::-webkit-scrollbar-track {
     background: #2e2e2e;
@@ -298,7 +298,7 @@
     background: #505050;
   }
   &::-webkit-scrollbar-thumb:hover {
-    background: #126e82;
+    background: #005994;
   }
 }
 .chat-imgbox {
@@ -532,7 +532,7 @@
     max-width: 30rem;
     border-bottom-left-radius: 5px;
     margin-right: 1rem;
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.4rem;
     padding: 0.2rem 1rem 0.8rem;
     background-color: #1f1f1f00;
     // box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.034);
@@ -542,30 +542,56 @@
 
     border-bottom: 2px solid rgba(26, 40, 238, 0.226);
     transform-origin: right;
-    cursor: pointer;
+
     padding-left: 1rem;
     // border-bottom-left-radius: 10px;
     animation: animatechat 1.5s cubic-bezier(0.19, 1, 0.22, 1);
-
+    cursor: pointer;
     &:hover {
       border: 2px solid rgba(255, 255, 255, 0.055);
       border-bottom: 2px solid #66329a;
     }
     .chatdetails {
       position: relative;
+      .chat-dots-left {
+        top: initial !important;
+        bottom: 0.38rem !important;
+        left: 0.8rem;
+        right: initial !important;
+
+        .dot-icon-left-rotate {
+          transform: rotate(90deg);
+        }
+        .dropdown-chat-left {
+          right: initial !important;
+          left: 0;
+          padding: 0.3rem 0.6rem !important;
+        }
+        .dropdown-item-left {
+          text-align: center;
+        }
+      }
       .chat-dots {
         position: absolute;
         bottom: -0.6rem;
         right: 0.2rem;
-
+        .circle-icon {
+          position: relative;
+          bottom: 0.2rem;
+          right: 0.2rem;
+        }
         .dot-icon {
           padding: 0.25rem 0.3rem;
-          font-size: 0.8rem;
+          font-size: 0.85rem;
           color: rgb(163, 163, 163);
           position: relative;
           z-index: 50;
+          transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
           &:hover {
-            color: white;
+            color: #a154ee;
+          }
+          &:active {
+            color: #a154ee;
           }
         }
         .drop-icon-rotate {
@@ -642,6 +668,15 @@
   .left-align {
     text-align: left;
   }
+  .left-margin {
+    margin-top: 1rem;
+  }
+  .left-margin:last-child {
+    margin-bottom: 3rem;
+  }
+  .left-margin-p:last-child {
+    margin-bottom: 3rem;
+  }
   @keyframes animatechat {
     0% {
       opacity: 0;
@@ -684,15 +719,18 @@
     margin: 0.9rem 0 0.3rem;
     color: #ffffff;
     background-color: rgb(11, 85, 146);
-    padding: 0.2rem 1.2rem 0.3rem 0.7rem;
+    padding: 0.2rem 1.35rem 0.3rem 0.7rem;
     border-radius: 10px;
     line-height: 1.8;
+    border: 1px solid rgb(11, 85, 146);
     &:hover {
-      background: transparent;
+      border: 1px solid rgba(11, 85, 146, 0.541);
+      background: rgba(11, 85, 146, 0.096);
     }
   }
   .no-bg {
     background: transparent;
+    border: 1px solid transparent;
   }
   .image-chat {
     margin-top: 1.5rem;
@@ -709,6 +747,9 @@
   margin-left: 1rem;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 5px;
+  p {
+    padding: 0.2rem 0.7rem 0.3rem 1.2rem;
+  }
 }
 .chat-form {
   width: 98%;

@@ -117,26 +117,44 @@ function outputMessage(msg) {
 
     if (userIdValue.value === msg.userDetails.userId) {
       div.classList.add("chat-item", "user-chat-list");
-      opData(div);
+      opData(div, true);
     } else {
       div.classList.add(
         "chat-item",
         "chats-left",
         "user-chat-list",
-        "left-align"
+        "left-align",
+        "left-margin-p"
       );
-      opData(div);
+      opData(div, false);
     }
-    function opData(div) {
+    function opData(div, va) {
       if (msg.userText) {
         const item = `<div class="chatdetails" >
-                        <div class="chat-dots" id=${msg.chatId}>
-                        <i onclick="handleDots(${msg.chatId})" class="fas fa-ellipsis-h dot-icon drop-icon-rotate"></i>
-                        <div class="dropdown-chat">
+                        <div class="${
+                          va ? "chat-dots" : "chat-dots chat-dots-left"
+                        }" id=${msg.chatId.toString()}>
+                        <i onclick="handleDots(${msg.chatId.toString()})" class="${
+          va
+            ? "fas fa-ellipsis-h dot-icon drop-icon-rotate"
+            : "fas fa-ellipsis-h dot-icon dot-icon-left-rotate"
+        }"></i>
+                        <div class="${
+                          va
+                            ? "dropdown-chat"
+                            : "dropdown-chat dropdown-chat-left"
+                        }">
                         <input type="hidden" value=${msg.chatId} id="chat_Id" >
-       
-                         <span onclick="handleChatDelete(${msg.chatId})" class="dropdown-item chat-delete-item"  >Delete</span>
-                         <span class="dropdown-item">Information</span>
+                        
+                         ${
+                           va
+                             ? `<span onclick="handleChatDelete(${msg.chatId.toString()})"  class="dropdown-item chat-delete-item">Delete</span>`
+                             : ""
+                         }
+                         <span style="text-align: center;" class="dropdown-item" onclick="handleInfo(${
+                           msg.chatId
+                         })">Information</span> 
+                        
                        </div>
                       </div>
                      <p>${msg.userText}</p>
@@ -145,20 +163,24 @@ function outputMessage(msg) {
 
         chatsContainer.appendChild(div);
       } else {
-        const item = `<div class="chatdetails" >
-                       <div class="chat-dots" id=${msg.chatId}>
-                       <i  onclick="handleDots(${msg.chatId})" class="fas fa-ellipsis-h dot-icon drop-icon-rotate"></i>
+        const item = `<div class="chatdetails" style="margin: 1rem 0" >
+                       <div class="chat-dots" id=${msg.chatId.toString()}>
+                       <i  onclick="handleDots(${msg.chatId.toString()})" class="fas fa-ellipsis-h dot-icon drop-icon-rotate"></i>
                        <div class="dropdown-chat">
                        <input type="hidden" value=${msg.chatId} id="chat_Id" >
 
-                        <span onclick="handleChatDelete(${msg.chatId})" class="dropdown-item chat-delete-item"  >Delete</span>
+                        <span onclick="handleChatDelete(${msg.chatId.toString()})" class="dropdown-item chat-delete-item"  >Delete</span>
                          <span class="dropdown-item">Information</span>
                        </div>
                      </div>
                        <div class="chat-imgbox" >
-                         <img src=${msg.userImg} alt="error" class="image-chat" />
+                         <img src=${
+                           msg.userImg
+                         } alt="error" class="image-chat" />
                           <div class="chat-imgdownload">
-                          <a download=${msg.userImg} href=${msg.userImg} target="_blank" rel="noreferrer">
+                          <a download=${msg.userImg} href=${
+          msg.userImg
+        } target="_blank" rel="noreferrer">
                            <i class="fas fa-cloud-download-alt download-icon"></i>
                           </a>
                          </div>
@@ -174,29 +196,38 @@ function outputMessage(msg) {
     console.log(userIdValue.value, msg.userDetails.userId);
     if (userIdValue.value === msg.userDetails.userId) {
       div.classList.add("chat-item", "user-chat-list");
-      outputHtml();
+      outputHtml(true);
     } else {
       div.classList.add(
         "chat-item",
         "chats-left",
         "user-chat-list",
-        "left-align"
+        "left-align",
+        "left-margin"
       );
-      outputHtml();
+      outputHtml(false);
     }
-    function outputHtml() {
+    function outputHtml(va) {
       div.innerHTML = `<div class="chatdetails" id=${msg.userDetails.userId}> 
                         <div class="chat-dots" id=${msg.chatId}>
                          <i  onclick="handleDots(${
                            msg.chatId
                          })"  class="fas fa-ellipsis-h dot-icon"></i>
-                         <div class="dropdown-chat">
+                         <div style="${
+                           !va && "left: 0;"
+                         }" class="dropdown-chat">
                          <input type="hidden" value=${msg.chatId} id="chat_Id" >
                         
-                          <span onclick="handleChatDelete(${
-                            msg.chatId
-                          })"  class="dropdown-item chat-delete-item">Delete</span>
-                          <span class="dropdown-item">Information</span>
+                          ${
+                            va
+                              ? `<span onclick="handleChatDelete(${msg.chatId})"  class="dropdown-item chat-delete-item">Delete</span>`
+                              : ""
+                          }
+                            <span style="text-align: center;" class="dropdown-item" onclick="handleInfo(${
+                              msg.chatId
+                            })">Information</span> 
+                         
+                          
                         </div>
                        </div>
                       <div class="chat-user-details" >

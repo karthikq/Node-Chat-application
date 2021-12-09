@@ -6,7 +6,10 @@ const chatdeleteitem = document.querySelectorAll(".chat-delete-item");
 const chat_Id = document.querySelectorAll("#chat_Id");
 const chat_room = document.querySelectorAll("#chat_room");
 const statusSelect = document.getElementById("status-select");
+const chatbox = document.querySelector(".chatbox");
+
 const setStatus = document.querySelector(".set-status");
+const chatInfo = document.querySelectorAll(".chat-info-item");
 
 const { room, user, scroll } = Qs.parse(location.search, {
   ignoreQueryPrefix: true,
@@ -32,6 +35,14 @@ if (scroll) {
   setTimeout(() => {
     window.history.pushState({}, "", `/?room=${room}&user=${user}`);
   }, 2000);
+} else {
+  setTimeout(() => {
+    chatbox.scrollTo({
+      top: chatbox.scrollHeight,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, 1500);
 }
 window.addEventListener("load", () => {
   dotIcon.forEach((icon, index) => {
@@ -39,11 +50,18 @@ window.addEventListener("load", () => {
       const checkactive = dropdownChat[index].classList.contains(
         "dropdown-chat-active"
       );
+      console.log(icon);
 
       if (checkactive) {
         dropdownChat[index].classList.remove("dropdown-chat-active");
+        // icon.setAttribute(
+        //   "class",
+        //   "fas fa-ellipsis-h dot-icon drop-icon-rotate"
+        // );
       } else {
+        // icon.setAttribute("class", "far fa-times-circle dot-icon circle-icon");
         dropdownChat[index].classList.add("dropdown-chat-active");
+
         setTimeout(() => {
           dropdownChat[index].classList.remove("dropdown-chat-active");
         }, 4000);
@@ -51,17 +69,30 @@ window.addEventListener("load", () => {
     });
   });
   chatdeleteitem.forEach((item, index) => {
-    item.addEventListener("click", (e) => {
-      const chatid = chat_Id[index].value;
-      const prevchat = document.querySelectorAll("#chat_Id");
-      const prevchatexits = prevchat[prevchat.length - 2];
-      if (prevchatexits) {
-        const prevchatid = prevchatexits.value;
-        swalalert(chatid, prevchatid);
-      } else {
-        const randomid = Math.floor(Math.random() * 4 + 1);
-        swalalert(chatid, randomid);
-      }
+    item.addEventListener("click", async (e) => {
+      const chatid = item.parentElement.children[0].value;
+      // const prevchat = chat_Id[index - 1];
+      const { data } = await axios.get(`/chat/prevchat/${chatid}?room=${room}`);
+      console.log(data);
+      // if (prevchat) {
+      //   const prevchatid = prevchat.value;
+      //   swalalert(chatid, prevchatid);
+      // } else {
+      const randomid = Math.floor(Math.random() * 4 + 1);
+      swalalert(chatid, data);
+      //  }
+    });
+  });
+  chatInfo.forEach((item, index) => {
+    item.addEventListener("click", async (e) => {
+      const chatId = chat_Id[index].value;
+      // const prevchat = chat_Id[index - 1];
+      // console.log(item);
+      // console.log(document.getElementById(chatId));
+      // swalalert(chatId, prevchatid);
+      const { data } = await axios.get(`/chat/details/${chatId}?room=${room}`);
+
+      infoAlert(data);
     });
   });
 });
@@ -93,6 +124,12 @@ function handleChatDelete(chat) {
   //   const randomid = Math.floor(Math.random() * 4 + 1);
   //   swalalert(currentId, randomid);
   // }
+}
+async function handleInfo(chat) {
+  const chatId = chat.children[1].children[0].value;
+  console.log(chat);
+  const { data } = await axios.get(`/chat/details/${chatId}?room=${room}`);
+  infoAlert(data);
 }
 
 function swalalert(chatid, prevchatid) {
@@ -141,16 +178,27 @@ async function handleStatuschange(userId) {
   axios.patch("/update/status", statusdata);
 }
 
-function setuserStatus(st) {
-  if (st === "offline") {
-    setStatus.style.backgroundColor = "red";
-  } else if (st === "active") {
-    setStatus.style.backgroundColor = "rgb(5, 146, 47)";
-  } else if (st === "busy") {
-    setStatus.style.backgroundColor = "black";
-  } else if (st === "gaming") {
-    setStatus.style.backgroundColor = "white";
-  } else {
-    setStatus.style.backgroundColor = "rgb(43, 3, 138)";
-  }
+function infoAlert(data) {
+  Swal.fire({
+    title: data.userText,
+    imageUrl: !data.userText && data.userImg,
+    imageHeight: !data.userText && 200,
+    imageWidth: !data.userText && 350,
+    html:
+      "By : <b>" +
+      data.username +
+      "</b>, <br/> " +
+      "userStatus : <b>" +
+      data.userDetails.activeStatus +
+      "</b> <br/> " +
+      "chatDuration :" +
+      data.date,
+
+    showClass: {
+      popup: "animate__animated animate__fadeInUp animation-duration-0.8s",
+    },
+    hideClass: {
+      popup: "animate__animated animate__fadeOutDown animation-duration-0.8s",
+    },
+  });
 }

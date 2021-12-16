@@ -6,9 +6,9 @@
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #3a3a3a6e;
+  background-color: #2e2e2ed0;
   backdrop-filter: blur(7px);
-  z-index: 100;
+  z-index: 200;
   transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
   animation: fadein 1s cubic-bezier(0.19, 1, 0.22, 1);
   display: none;
@@ -108,5 +108,11 @@
     &:hover {
       color: rgb(252, 252, 252);
     }
+  }
+}
+@media screen and (max-width: 1100px) {
+  .auth-box {
+    max-width: 19rem;
+    margin: 0 0.5rem;
   }
 }

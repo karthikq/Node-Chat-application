@@ -118,6 +118,21 @@ body {
   transform: scale(0.8);
 }
 
+@media screen and (max-width: 1100px) {
+  .intro-contents {
+    height: 85%;
+  }
+  .intro-contents h2 {
+    width: 85% !important;
+    text-align: center;
+    padding: 0 1rem;
+    width: 100%;
+    font-size: 1.8rem;
+  }
+  .intro-contents .intro-arrow {
+    margin-top: 2rem;
+  }
+}
 /** @format */
 .contents {
   margin: 0px auto;
@@ -150,6 +165,7 @@ body {
   background: #126e82;
 }
 .sidebar .create-room-bar {
+  position: relative;
   width: 90%;
   margin: 0 auto;
   padding: 0.5rem 0.8rem;
@@ -979,6 +995,76 @@ body {
     font-size: 0.8rem;
   }
 }
+@media screen and (max-width: 1100px) {
+  .sidebar {
+    visibility: hidden;
+    position: absolute;
+    z-index: 100;
+    left: -25rem;
+    width: 60%;
+    top: 0;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  .sidebar-menu {
+    width: 1.4rem;
+    height: 1.15rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    position: fixed;
+    top: 1.5rem;
+    left: 1rem;
+    z-index: 150;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  .sidebar-menu .sidebar-menu-line {
+    display: block;
+    width: 100%;
+    height: 0.1rem;
+    background-color: white;
+    margin: 0.2rem 0;
+    padding: 0.02rem 0;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  .sidebar-menu-active {
+    top: 3.4rem;
+    border-radius: 50%;
+  }
+  .sidebar-menu-active .sidebar-menu-line {
+    transform: rotate(45deg);
+    background-color: white;
+  }
+  .sidebar-menu-active .sidebar-menu-line:nth-child(1) {
+    position: relative;
+    top: 0.35rem;
+  }
+  .sidebar-menu-active .sidebar-menu-line:nth-child(2) {
+    transform: rotate(-45deg);
+  }
+  .sidebar-menu-active .sidebar-menu-line:nth-child(3) {
+    display: none;
+  }
+
+  .sidebar-active {
+    left: 0;
+    height: 100%;
+    background-color: #000000;
+    visibility: visible;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  .sidebar-right {
+    display: none;
+  }
+
+  .chatbox {
+    width: 100%;
+  }
+  .chatbox .chats .chat-item {
+    margin-right: 0rem;
+  }
+}
 /** @format */
 .auth-container {
   width: 100%;
@@ -986,9 +1072,9 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #3a3a3a6e;
+  background-color: #2e2e2ed0;
   backdrop-filter: blur(7px);
-  z-index: 100;
+  z-index: 200;
   transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
   animation: fadein 1s cubic-bezier(0.19, 1, 0.22, 1);
   display: none;
@@ -1091,6 +1177,12 @@ body {
   color: #fcfcfc;
 }
 
+@media screen and (max-width: 1100px) {
+  .auth-box {
+    max-width: 19rem;
+    margin: 0 0.5rem;
+  }
+}
 /** @format */
 .room-container {
   width: 100%;
@@ -1098,22 +1190,24 @@ body {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 200;
   background-color: #161616c2;
   backdrop-filter: blur(7px);
-  z-index: 100;
   display: flex;
   justify-content: center;
   align-items: center;
   display: none;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .room-box {
   width: 25rem;
   height: 15rem;
-  background: linear-gradient(0deg, #09091009 0%, #333333 100%);
+  background: linear-gradient(0deg, #000000 0%, #333333 100%);
   border-radius: 10px;
   position: relative;
   box-shadow: 0px 0px 80px rgba(255, 255, 255, 0.075);
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 .room-box .close-icon {
   position: absolute;
@@ -1136,7 +1230,7 @@ body {
 }
 .room-box form label {
   color: #d6d6d6;
-  font-size: 0.9rem;
+  font-size: 0.98rem;
   margin-bottom: 1rem;
   font-weight: 400;
   letter-spacing: 0.5px;
@@ -1228,6 +1322,29 @@ body {
 }
 .room-box form button:hover {
   letter-spacing: 1px;
+}
+
+@media screen and (max-width: 1100px) {
+  .room-box {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+@media screen and (max-width: 550px) {
+  .intro-contents {
+    height: 90%;
+  }
+  .intro-contents h2 {
+    text-align: center;
+    padding: 0 0.8rem;
+    width: 100%;
+    font-size: 1.6rem;
+  }
+  .intro-contents select {
+    padding: 0.25rem 0.3rem;
+    width: 90%;
+    margin: 0.8rem auto;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */

@@ -6,12 +6,18 @@ const closeIcon = document.querySelector("#closeIcon");
 const createForm2 = document.querySelector("#createForm");
 const createSubmitBtn = document.querySelector("#createSubmitBtn");
 const createformerror = document.querySelector(".createformerror");
+const loginFrom = document.querySelector(".auth-container");
 
+function loginModal2() {
+  loginFrom.style.display = "block";
+}
 createRoomBtn.addEventListener("click", () => {
   if (authValue.value === "false") {
-    loginModal();
+    loginModal2();
     window.history.pushState = "/?showlogin=" + true;
-  } else createForm.style.display = "flex";
+  } else {
+    createForm.style.display = "flex";
+  }
 });
 
 closeIcon.addEventListener("click", () => {
@@ -24,7 +30,7 @@ createForm2.addEventListener("submit", async (e) => {
   const roomName = e.target.elements[0].value;
 
   if (authValue.value === "false") {
-    loginModal();
+    loginModal2();
     window.history.pushState = "/?showlogin=" + true;
   } else {
     try {

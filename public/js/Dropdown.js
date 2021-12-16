@@ -7,6 +7,8 @@ const chat_Id = document.querySelectorAll("#chat_Id");
 const chat_room = document.querySelectorAll("#chat_room");
 const statusSelect = document.getElementById("status-select");
 const chatbox = document.querySelector(".chatbox");
+const sidebar = document.querySelector(".sidebar");
+const sidebarmenu = document.querySelector(".sidebar-menu");
 
 const setStatus = document.querySelector(".set-status");
 const chatInfo = document.querySelectorAll(".chat-info-item");
@@ -42,7 +44,7 @@ if (scroll) {
       left: 0,
       behavior: "smooth",
     });
-  }, 1500);
+  }, 1000);
 }
 window.addEventListener("load", () => {
   dotIcon.forEach((icon, index) => {
@@ -73,7 +75,7 @@ window.addEventListener("load", () => {
       const chatid = item.parentElement.children[0].value;
       // const prevchat = chat_Id[index - 1];
       const { data } = await axios.get(`/chat/prevchat/${chatid}?room=${room}`);
-      console.log(data);
+
       // if (prevchat) {
       //   const prevchatid = prevchat.value;
       //   swalalert(chatid, prevchatid);
@@ -98,8 +100,8 @@ window.addEventListener("load", () => {
 });
 
 function handleDots(chat) {
-  console.log(chat);
   const el = chat.children[1].classList.contains("dropdown-chat-active");
+
   if (el) {
     chat.children[1].classList.remove("dropdown-chat-active");
   } else {
@@ -109,11 +111,13 @@ function handleDots(chat) {
     }, 4000);
   }
 }
-function handleChatDelete(chat) {
+async function handleChatDelete(chat) {
   console.log(chat.children[1].children[0].value);
   const chatid = chat.children[1].children[0].value;
   const randomid = Math.floor(Math.random() * 4 + 1);
-  swalalert(chatid, chatid);
+  const { data } = await axios.get(`/chat/prevchat/${chatid}?room=${room}`);
+
+  swalalert(chatid, data);
   // const prevelement = document.querySelectorAll("#chat_Id");
   // const prevelIdexits = prevelement[prevelement.length - 2];
   // const currentId = prevelement[prevelement.length - 1].value;
@@ -201,4 +205,30 @@ function infoAlert(data) {
       popup: "animate__animated animate__fadeOutDown animation-duration-0.8s",
     },
   });
+}
+function handleNavMenu() {
+  opensidebar();
+}
+sidebarmenu.addEventListener("click", () => {
+  const contains = sidebar.classList.contains("sidebar-active");
+
+  if (contains) {
+    sidebar.classList.add("sidebar-active");
+    sidebarmenu.classList.add("sidebar-menu-active");
+  } else {
+    sidebarmenu.classList.remove("sidebar-menu-active");
+
+    sidebar.classList.remove("sidebar-active");
+  }
+});
+function opensidebar() {
+  const contains = sidebar.classList.contains("sidebar-active");
+  if (contains) {
+    sidebar.classList.remove("sidebar-active");
+    sidebarmenu.classList.remove("sidebar-menu-active");
+  } else {
+    sidebarmenu.classList.add("sidebar-menu-active");
+
+    sidebar.classList.add("sidebar-active");
+  }
 }

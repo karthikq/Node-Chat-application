@@ -2,7 +2,7 @@
 
 const GitHubStrategy = require("passport-github2").Strategy;
 const User = require("../models/User.js");
-
+const port = process.env.PORT || 3000;
 const { nanoid } = require("nanoid");
 
 const apiUrl = () => {

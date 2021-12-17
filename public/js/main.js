@@ -162,6 +162,12 @@ function outputMessage(msg) {
         div.innerHTML = item;
 
         chatsContainer.appendChild(div);
+        // chatsContainer.scrollTop = chatsContainer.scrollHeight + "40";
+        chatbox.scrollTo({
+          top: chatbox.scrollHeight,
+          left: 0,
+          behavior: "smooth",
+        });
       } else {
         const item = `<div class="chatdetails" style="margin: 1rem 0" >
                        <div class="chat-dots" id=${msg.chatId.toString()}>
@@ -189,13 +195,18 @@ function outputMessage(msg) {
         div.innerHTML = item;
 
         chatsContainer.appendChild(div);
+        chatbox.scrollTo({
+          top: chatbox.scrollHeight,
+          left: 0,
+          behavior: "smooth",
+        });
       }
     }
   } else {
     const div = document.createElement("div");
     console.log(userIdValue.value, msg.userDetails.userId);
     if (userIdValue.value === msg.userDetails.userId) {
-      div.classList.add("chat-item", "user-chat-list");
+      div.classList.add("chat-item", "user-chat-list", "right-margin");
       outputHtml(true);
     } else {
       div.classList.add(
@@ -214,7 +225,7 @@ function outputMessage(msg) {
                            msg.chatId
                          })"  class="fas fa-ellipsis-h dot-icon"></i>
                          <div style="${
-                           !va && "left: 0;"
+                           !va && "right: 0;"
                          }" class="dropdown-chat">
                          <input type="hidden" value=${msg.chatId} id="chat_Id" >
                         
@@ -253,7 +264,12 @@ function outputMessage(msg) {
                      }
   </div>`;
       chatsContainer.appendChild(div);
-      chatbox.scrollTo(0, chatbox.scrollHeight);
+
+      chatbox.scrollTo({
+        top: chatbox.scrollHeight,
+        left: 0,
+        behavior: "smooth",
+      });
     }
   }
 }

@@ -1,10 +1,9 @@
 /** @format */
 
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
-const User = require("../models/User");
+const User = require("../models/User.js");
 const { nanoid } = require("nanoid");
 const port = process.env.PORT || 3000;
-const CheckUser = require("../routes/CheckUser");
 
 const apiUrl = () => {
   if (port === 3000) {
@@ -18,9 +17,8 @@ module.exports = async function GoogleAuth(passport) {
     passport.use(
       new GoogleStrategy(
         {
-          clientID:
-            "201697071575-optgp6nu08ph45benq3gc8u687q018sg.apps.googleusercontent.com",
-          clientSecret: "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",
+          clientID: process.env.GOOGLE_CLIENT_ID,
+          clientSecret: process.env.GOOGLE_CLIENT_SECRECT,
           callbackURL: `${apiUrl()}/auth/user/redirect`,
         },
         async function (accessToken, refreshToken, profile, cb) {

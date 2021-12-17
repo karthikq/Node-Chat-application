@@ -1,5 +1,6 @@
 /** @format */
 
+require("dotenv").config();
 const express = require("express");
 const http = require("http");
 const port = process.env.PORT || 3000;
@@ -12,18 +13,21 @@ require("ejs");
 const Database = require("./connection/database");
 const message = require("./messages/message");
 const GoogleAuth = require("./auth/GoogleAuth");
+const GithubAuth = require("./auth/GithubAuth");
 Database();
 
 const app = express();
 const server = http.createServer(app);
 
 GoogleAuth(passport);
+GithubAuth(passport);
 
+app.use(cors());
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors());
+
 app.use(
   session({
     secret: "value",

@@ -134,7 +134,7 @@
                <%appendElements(chats[index].userDetails.userId,text)%>
 
               <%}else{%>
-                <div class="<%=details.username === text.username ? "chat-item" : "chat-item chats-left"%>"">
+                <div class="<%=details.username === text.username ? "chat-item right-padding" : "chat-item chats-left left-margin"%>"">
                   <div class="chatdetails" 
                   id="<%=text.userDetails.userId%>">
                   <% if(details.userId === text.userDetails.userId){%>
@@ -150,7 +150,7 @@
                    <%}else{%>
                     <div class="chat-dots" id="<%=text.chatId%>">
                       <i class="fas fa-ellipsis-h dot-icon "></i>
-                      <div style="left: 0;" class="dropdown-chat">
+                      <div style="right: 0;" class="dropdown-chat">
                         <input type="hidden" value="<%=text.chatId%>" id="chat_Id" >
                         <span style="text-align: center;" class="dropdown-item chat-info-item" >Information</span>
                       </div>
@@ -207,6 +207,9 @@
             </form>
           </div>
         </div>
+        <div class="sidebar-rignt-mobile"  >
+          <i id="mobile-avatar" class="far fa-user avatar-icon"></i>
+        </div>
         <div class="sidebar-right" >
           <div class="user-info" >
             <div class="user-profile-img">
@@ -255,7 +258,7 @@
                   <%chatusers.forEach((user)=>{ %>
                     <div class="room-userlist-box" >
                       <div class="room-userlist-details" >
-                        <img class="user-avatar" src="<%=user.profileUrl%>" alt="user profile img">
+                        <img class="user-avatar" referrerpolicy="no-referrer"  src="<%=user.profileUrl%>" alt="user profile img">
                         <span><%=user.username%></span>
                       </div>
                
@@ -293,6 +296,7 @@
   crossorigin="anonymous"></script> -->
  
     <script src="/js/Dropdown.js"></script>
+    <script src="/js/Sidebar.js"></script>
     <script src="/js/createRoom.js"></script>
     <script src="/js/CreateImg.js"  type="module" ></script>
     <script src="/js/main.js"  type="module"></script>

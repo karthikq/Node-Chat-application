@@ -21,4 +21,11 @@ route.get("/user/logout", (req, res) => {
   res.redirect("/?showlogin=" + true);
 });
 
+route.get(
+  "/user/github",
+  passport.authenticate("github", { scope: "user:email" })
+);
+route.get("/github/callback", passport.authenticate("github"), (req, res) => {
+  res.redirect("/user/room");
+});
 module.exports = route;

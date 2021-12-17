@@ -7,8 +7,6 @@ const chat_Id = document.querySelectorAll("#chat_Id");
 const chat_room = document.querySelectorAll("#chat_room");
 const statusSelect = document.getElementById("status-select");
 const chatbox = document.querySelector(".chatbox");
-const sidebar = document.querySelector(".sidebar");
-const sidebarmenu = document.querySelector(".sidebar-menu");
 
 const setStatus = document.querySelector(".set-status");
 const chatInfo = document.querySelectorAll(".chat-info-item");
@@ -205,30 +203,4 @@ function infoAlert(data) {
       popup: "animate__animated animate__fadeOutDown animation-duration-0.8s",
     },
   });
-}
-function handleNavMenu() {
-  opensidebar();
-}
-sidebarmenu.addEventListener("click", () => {
-  const contains = sidebar.classList.contains("sidebar-active");
-
-  if (contains) {
-    sidebar.classList.add("sidebar-active");
-    sidebarmenu.classList.add("sidebar-menu-active");
-  } else {
-    sidebarmenu.classList.remove("sidebar-menu-active");
-
-    sidebar.classList.remove("sidebar-active");
-  }
-});
-function opensidebar() {
-  const contains = sidebar.classList.contains("sidebar-active");
-  if (contains) {
-    sidebar.classList.remove("sidebar-active");
-    sidebarmenu.classList.remove("sidebar-menu-active");
-  } else {
-    sidebarmenu.classList.add("sidebar-menu-active");
-
-    sidebar.classList.add("sidebar-active");
-  }
 }

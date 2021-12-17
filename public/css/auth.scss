@@ -55,7 +55,8 @@
   justify-content: center;
   align-items: center;
   margin-top: 12%;
-  div {
+  .google-icon-div,
+  .github-icon {
     border-right: 2px solid rgba(255, 255, 255, 0.137);
     position: relative;
     z-index: 10;
@@ -75,26 +76,27 @@
       transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
     }
   }
-  div:nth-child(1)::before {
+  .google-icon-div::before {
     transform-origin: right;
   }
-  div:nth-child(2)::before {
+  .github-icon::before {
     transform-origin: left;
   }
-  div:nth-child(1):hover::before {
+  .google-icon-div:hover::before {
     transform: scaleX(1);
   }
-  div:nth-child(2):hover::before {
+  .github-icon:hover::before {
     transform: scaleX(1);
   }
-  div:nth-child(1):hover .login-icon {
+  .google-icon-div:hover .login-icon {
     color: #9f54eb;
   }
-  div:nth-child(2):hover .login-icon {
+  .github-icon:hover .login-icon {
     color: #9f54eb;
   }
-  div:nth-child(2) {
-    border-right: 2px solid rgba(102, 51, 153, 0);
+
+  .github-icon {
+    border-right: 2px solid rgba(255, 255, 255, 0);
   }
   .login-icon {
     font-size: 2.2rem;
@@ -112,7 +114,12 @@
 }
 @media screen and (max-width: 1100px) {
   .auth-box {
-    max-width: 19rem;
+    width: 19rem;
     margin: 0 0.5rem;
+    height: 12rem;
+    h2 {
+      margin-top: 1.25rem;
+      font-weight: 300;
+    }
   }
 }

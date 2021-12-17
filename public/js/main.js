@@ -111,7 +111,7 @@ loginFrom.addEventListener("click", (e) => {
 function outputMessage(msg) {
   // console.log(msg.prevUserId, msg.userDetails.userId);
   if (msg.prevUserId && msg.prevUserId === msg.userDetails.userId) {
-    const userList = document.querySelectorAll("#" + msg.prevUserId);
+    // const userList = document.querySelectorAll("#" + msg.prevUserId);
 
     const div = document.createElement("div");
 

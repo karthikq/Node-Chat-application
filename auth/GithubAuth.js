@@ -4,13 +4,22 @@ const GitHubStrategy = require("passport-github2").Strategy;
 const User = require("../models/User.js");
 
 const { nanoid } = require("nanoid");
+
+const apiUrl = () => {
+  if (port === 3000) {
+    return "http://localhost:3000";
+  } else {
+    return "https://chatroomapp1.herokuapp.com";
+  }
+};
+
 module.exports = GithubAuth = (passport) => {
   passport.use(
     new GitHubStrategy(
       {
         clientID: process.env.GIT_CLIENT_ID,
         clientSecret: process.env.GIT_CLIENT_SECRECT,
-        callbackURL: "http://localhost:3000/auth/github/callback",
+        callbackURL: `${apiUrl()}/auth/github/callback`,
       },
       async function (accessToken, refreshToken, profile, done) {
         try {

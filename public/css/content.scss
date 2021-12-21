@@ -103,6 +103,32 @@
       left: 0.8px;
     }
   }
+  .err-msg {
+    width: 95%;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    position: relative;
+    background-color: #6b6b6b67;
+    border-radius: 10px;
+    padding: 0.4rem;
+    .close-icon-err {
+      position: absolute;
+      cursor: pointer;
+      left: 0;
+      bottom: -1.5rem;
+      &:hover {
+        color: #8634d8;
+      }
+    }
+    .info-icon {
+      margin-right: 0.4rem;
+    }
+    span {
+      font-weight: 400;
+      gap: 0 0.45rem;
+      font-size: 0.85rem;
+    }
+  }
   .room-name {
     height: 400px;
     margin-top: 2rem;
@@ -307,6 +333,7 @@
   width: 330px;
   height: 200px;
   position: relative;
+  margin-right: 8px;
   .chat-imgdownload {
     position: absolute;
     top: 0;
@@ -356,7 +383,7 @@
       color: rgb(226, 226, 226);
       text-align: center;
       font-size: 0.95rem;
-      letter-spacing: 0.8px;
+      letter-spacing: 0.5px;
     }
     .user-info-contents {
       width: 90%;
@@ -428,7 +455,7 @@
     color: rgba(255, 255, 255, 0.904);
     font-weight: 400;
     font-size: 1.05rem;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.4px;
     text-align: right;
   }
   .room-userlist-container {
@@ -674,7 +701,7 @@
   .left-margin {
     margin-top: 1rem;
     margin-bottom: 1rem !important;
-    margin-left: 0rem;
+    margin-left: 5px;
     padding-left: 8px;
   }
 
@@ -895,6 +922,9 @@
         height: 260px;
       }
     }
+    .err-msg {
+      width: 95%;
+    }
   }
   .sidebar-menu {
     width: 1.35rem;
@@ -1074,5 +1104,19 @@
   }
   .sidebar {
     width: 70%;
+  }
+  .chat-imgbox {
+    width: 280px;
+    height: 180px;
+    margin-right: 6px;
+    .image-chat {
+      width: 280px;
+      height: 180px;
+    }
+  }
+  .room-userlist {
+    .room-userlist-box {
+      height: 47px;
+    }
   }
 }

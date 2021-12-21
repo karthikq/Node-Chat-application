@@ -4,6 +4,8 @@ const sidebarmenu = document.querySelector(".sidebar-menu");
 const sidebarrigntmobile = document.querySelector(".sidebar-rignt-mobile");
 const sidebarright = document.querySelector(".sidebar-right");
 const mobileavatar = document.querySelector("#mobile-avatar");
+const closeIconErr = document.querySelector(".close-icon-err");
+const errMsg = document.querySelector(".err-msg");
 
 function handleNavMenu() {
   opensidebar();
@@ -53,4 +55,8 @@ sidebarrigntmobile.addEventListener("click", () => {
     sidebarrigntmobile.classList.add("sidebar-rignt-mobile-active");
     mobileavatar.setAttribute("class", "far fa-times-circle avatar-icon");
   }
+});
+
+closeIconErr.addEventListener("click", () => {
+  errMsg.style.display = "none";
 });

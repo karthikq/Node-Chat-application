@@ -13,33 +13,24 @@ route.get("/", async (req, res) => {
     const userDetails = await User.findOne({
       userId: req.user.userId,
     });
-
-    const chatDetails = await Room.findOne({ roomName: room });
     const AvlRooms = await Room.find({});
 
-    if (chatDetails) {
-      res.render("home", {
-        details: userDetails,
-        chats: chatDetails.chats,
-        chatusers: chatDetails.users,
-        auth: true,
-        AvlRooms,
-      });
+    if (!room) {
+      res.redirect(`/?room=check&user=${req.user.userId}`);
     } else {
-      const newRoom = new Room({
-        roomName: room,
-        createBy: userDetails.userId,
-        users: userDetails,
-      });
-      await newRoom.save();
-      const AvlRooms = await Room.find({});
+      const chatDetails = await Room.findOne({ roomName: room });
 
-      res.render("home", {
-        details: userDetails,
-        chats: newRoom.chats,
-        AvlRooms,
-        auth: true,
-      });
+      if (chatDetails) {
+        res.render("home", {
+          details: userDetails,
+          chats: chatDetails.chats,
+          chatusers: chatDetails.users,
+          auth: true,
+          AvlRooms,
+        });
+      } else {
+        res.render("Error");
+      }
     }
   } else {
     res.render("home", { auth: false, chats: [] });
@@ -65,16 +56,31 @@ route.post("/user/room", (req, res) => {
 });
 
 route.post("/room/create", async (req, res) => {
-  const { roomName } = req.body;
-
+  const { roomName, user } = req.body;
+  console.log(req.body);
   const name = roomName.replace(/\s/g, "").toLowerCase();
 
-  const checkRoom = await Room.findOne({ roomName: name });
-  if (checkRoom) {
-    res.status(200).json({ message: "room already exists", errorStatus: true });
-    console.log("s");
-  } else {
-    res.status(200).json({ message: "room doesn't exist", errorStatus: false });
+  try {
+    const checkRoom = await Room.findOne({ roomName: name });
+    if (checkRoom) {
+      res
+        .status(200)
+        .json({ message: "room already exists", errorStatus: true });
+    } else {
+      const newRoom = new Room({
+        roomName: name,
+        createdBy: user,
+        users: [],
+      });
+      await newRoom.save();
+      // const AvlRooms = await Room.find({});
+
+      res
+        .status(200)
+        .json({ message: "room doesn't exist", errorStatus: false });
+    }
+  } catch (error) {
+    console.log(error);
   }
 });
 

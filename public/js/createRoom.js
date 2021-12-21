@@ -8,6 +8,10 @@ const createSubmitBtn = document.querySelector("#createSubmitBtn");
 const createformerror = document.querySelector(".createformerror");
 const loginFrom = document.querySelector(".auth-container");
 
+// const { room, user } = Qs.parse(location.search, {
+//   ignoreQueryPrefix: true,
+// });
+
 function loginModal2() {
   loginFrom.style.display = "block";
 }
@@ -34,7 +38,10 @@ createForm2.addEventListener("submit", async (e) => {
     window.history.pushState = "/?showlogin=" + true;
   } else {
     try {
-      const { data } = await axios.post("/room/create", { roomName });
+      const { data } = await axios.post("/room/create", {
+        roomName,
+        user: userIdValue.value,
+      });
 
       if (data.errorStatus) {
         createformerror.style.display = "inline-block";

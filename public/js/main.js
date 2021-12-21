@@ -151,9 +151,7 @@ function outputMessage(msg) {
                              ? `<span onclick="handleChatDelete(${msg.chatId.toString()})"  class="dropdown-item chat-delete-item">Delete</span>`
                              : ""
                          }
-                         <span style="text-align: center;" class="dropdown-item" onclick="handleInfo(${
-                           msg.chatId
-                         })">Information</span> 
+                         <span style="text-align: center;" class="dropdown-item" onclick="handleInfo(${msg.chatId.toString()})">Information</span> 
                         
                        </div>
                       </div>
@@ -176,7 +174,7 @@ function outputMessage(msg) {
                        <input type="hidden" value=${msg.chatId} id="chat_Id" >
 
                         <span onclick="handleChatDelete(${msg.chatId.toString()})" class="dropdown-item chat-delete-item"  >Delete</span>
-                         <span class="dropdown-item">Information</span>
+                         <span class="dropdown-item" onclick="handleInfo(${msg.chatId.toString()})">Information</span>
                        </div>
                      </div>
                        <div class="chat-imgbox" >

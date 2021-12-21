@@ -37,6 +37,12 @@
           <div class="active-room-s">
             <span></span>
           </div>
+          <% if(typeof details !== "undefined"){ %>
+            <div class="err-msg" ><i class="fas fa-times close-icon-err"></i>
+              <span><i class="fas fa-info-circle info-icon"></i> If you can't delete the message please refresh the page and then do the same.</span>
+            </div>
+          <%}%>
+      
           <div class="room-name">
             <div class="room-header">
               <h1><i class="fas fa-server room-icon"></i>Rooms</h1>
@@ -134,7 +140,7 @@
                <%appendElements(chats[index].userDetails.userId,text)%>
 
               <%}else{%>
-                <div class="<%=details.username === text.username ? "chat-item right-padding" : "chat-item chats-left left-margin"%>"">
+                <div class="<%=details.userId === text.userDetails.userId ? "chat-item right-padding" : "chat-item chats-left left-margin"%>"">
                   <div class="chatdetails" 
                   id="<%=text.userDetails.userId%>">
                   <% if(details.userId === text.userDetails.userId){%>

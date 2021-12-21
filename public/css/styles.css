@@ -118,6 +118,29 @@ body {
   transform: scale(0.8);
 }
 
+.error-container {
+  width: 100%;
+  height: 100vh;
+}
+
+.error-contents {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.error-contents .error-img {
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+}
+.error-contents .err-h1 {
+  font-size: 1.9rem;
+  margin-bottom: 0.7rem;
+}
+
 @media screen and (max-width: 1100px) {
   .intro-contents {
     height: 85%;
@@ -199,6 +222,32 @@ body {
   display: none;
   font-size: 0.8rem;
   left: 0.8px;
+}
+.sidebar .err-msg {
+  width: 95%;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  position: relative;
+  background-color: #6b6b6b67;
+  border-radius: 10px;
+  padding: 0.4rem;
+}
+.sidebar .err-msg .close-icon-err {
+  position: absolute;
+  cursor: pointer;
+  left: 0;
+  bottom: -1.5rem;
+}
+.sidebar .err-msg .close-icon-err:hover {
+  color: #8634d8;
+}
+.sidebar .err-msg .info-icon {
+  margin-right: 0.4rem;
+}
+.sidebar .err-msg span {
+  font-weight: 400;
+  gap: 0 0.45rem;
+  font-size: 0.85rem;
 }
 .sidebar .room-name {
   height: 400px;
@@ -453,6 +502,7 @@ body {
   width: 330px;
   height: 200px;
   position: relative;
+  margin-right: 8px;
 }
 .chat-imgbox .chat-imgdownload {
   position: absolute;
@@ -504,7 +554,7 @@ body {
   color: #e2e2e2;
   text-align: center;
   font-size: 0.95rem;
-  letter-spacing: 0.8px;
+  letter-spacing: 0.5px;
 }
 .sidebar-right .user-info .user-info-contents {
   width: 90%;
@@ -572,7 +622,7 @@ body {
   color: rgba(255, 255, 255, 0.904);
   font-weight: 400;
   font-size: 1.05rem;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px;
   text-align: right;
 }
 .room-userlist .room-userlist-container {
@@ -806,7 +856,7 @@ body {
 .chats .left-margin {
   margin-top: 1rem;
   margin-bottom: 1rem !important;
-  margin-left: 0rem;
+  margin-left: 5px;
   padding-left: 8px;
 }
 .chats .left-margin:last-child {
@@ -1017,6 +1067,9 @@ body {
   .sidebar .room-name .rooms-list {
     height: 260px;
   }
+  .sidebar .err-msg {
+    width: 95%;
+  }
 
   .sidebar-menu {
     width: 1.35rem;
@@ -1192,6 +1245,20 @@ body {
 
   .sidebar {
     width: 70%;
+  }
+
+  .chat-imgbox {
+    width: 280px;
+    height: 180px;
+    margin-right: 6px;
+  }
+  .chat-imgbox .image-chat {
+    width: 280px;
+    height: 180px;
+  }
+
+  .room-userlist .room-userlist-box {
+    height: 47px;
   }
 }
 /** @format */

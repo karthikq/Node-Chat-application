@@ -184,16 +184,17 @@ function infoAlert(data) {
   Swal.fire({
     title: data.userText,
     imageUrl: !data.userText && data.userImg,
-    imageHeight: !data.userText && 200,
-    imageWidth: !data.userText && 350,
+    imageHeight: !data.userText && 220,
+    imageWidth: !data.userText && 250,
+
     html:
       "By : <b>" +
       data.username +
       "</b>, <br/> " +
-      "userStatus : <b>" +
+      "Userstatus : <b>" +
       data.userDetails.activeStatus +
       "</b> <br/> " +
-      "chatDuration :" +
+      "ChatDuration :" +
       data.date,
 
     showClass: {

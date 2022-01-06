@@ -71,13 +71,7 @@
       
            
           </div>
-          <div class="btn">
-            <% if(typeof details !== "undefined"){%>
-            <a href="/auth/user/logout"> <button>Logout</button></a>
-            <% }else{%>
-            <button id="loginbtn">Login</button>
-            <% } %>
-          </div>
+          
           <!-- <div class="users-list">
             <h2>Users list</h2>
             <ul>
@@ -97,7 +91,7 @@
                
               <%if(chats[index-1] && chats[index].userDetails.userId === chats[index-1].userDetails.userId){%>
                 <% appendElements = function(tree){ %>
-                  <div class="<%=details.username === text.username ? "chat-item user-chat-list" : "chat-item chats-left user-chat-list"%>">
+                  <div class="<%=details.userId === text.userDetails.userId ? "chat-item user-chat-list" : "chat-item chats-left user-chat-list"%>">
                     <div class="chatdetails" 
                     id="<%=text.userDetails.userId%>">
                    <div class="chatdetails">
@@ -258,7 +252,7 @@
           </div>
           <% if(typeof details !== "undefined"){%>
             <div class="room-userlist" >
-              <h2>Users List</h2>
+              <h2>Room Users  </h2>
               <div class="room-userlist-container" >
                 <% if(typeof chatusers !== "undefined"){ %>
                   <%chatusers.forEach((user)=>{ %>
@@ -286,7 +280,13 @@
             </div>
           </div> 
           <%}%> 
-         
+          <div class="btn">
+            <% if(typeof details !== "undefined"){%>
+            <a href="/auth/user/logout"> <button>Logout</button></a>
+            <% }else{%>
+            <button id="loginbtn">Login</button>
+            <% } %>
+          </div>
       </div>
     </div>
     <script src="./socket.io/socket.io.js"></script>

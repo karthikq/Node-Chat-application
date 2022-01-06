@@ -400,47 +400,6 @@ body {
     opacity: 1;
   }
 }
-.sidebar .btn {
-  position: absolute;
-  bottom: 0;
-  width: 90%;
-  margin-top: 5rem;
-  margin-bottom: 2rem;
-}
-.sidebar .btn button {
-  width: 100%;
-  padding: 0.5rem;
-  outline: 0;
-  border: 2px solid transparent;
-  background-color: #3a3a3a;
-  color: white;
-  font-family: "Poppins", sans-serif;
-  letter-spacing: 0.7px;
-  position: relative;
-  z-index: 3;
-  cursor: pointer;
-  border: 0;
-}
-.sidebar .btn button::before {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  content: "";
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  background-color: #6a3191;
-  z-index: -1;
-  transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
-  clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
-}
-.sidebar .btn button:hover::before {
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-}
-.sidebar .btn button:hover {
-  letter-spacing: 1px;
-}
 .sidebar .users-list {
   width: 100%;
   margin-top: 2rem;
@@ -554,6 +513,7 @@ body {
   color: #e2e2e2;
   text-align: center;
   font-size: 0.95rem;
+  text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 .sidebar-right .user-info .user-info-contents {
@@ -611,6 +571,44 @@ body {
   object-fit: cover;
   border-radius: 5px;
 }
+.sidebar-right .btn {
+  width: 90%;
+  margin: 5rem auto 2rem;
+}
+.sidebar-right .btn button {
+  width: 100%;
+  padding: 0.5rem;
+  outline: 0;
+  border: 2px solid transparent;
+  background-color: #3a3a3a;
+  color: white;
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 0.7px;
+  position: relative;
+  z-index: 3;
+  cursor: pointer;
+  border: 0;
+}
+.sidebar-right .btn button::before {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  content: "";
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background-color: #6a3191;
+  z-index: -1;
+  transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+  clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+}
+.sidebar-right .btn button:hover::before {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
+.sidebar-right .btn button:hover {
+  letter-spacing: 1px;
+}
 
 .room-userlist {
   width: 90%;
@@ -619,10 +617,10 @@ body {
 }
 .room-userlist h2 {
   margin-bottom: 1rem;
-  color: rgba(255, 255, 255, 0.904);
-  font-weight: 400;
+  color: #9248db;
+  font-weight: 300;
   font-size: 1.05rem;
-  letter-spacing: 0.4px;
+  letter-spacing: 0.5px;
   text-align: right;
 }
 .room-userlist .room-userlist-container {

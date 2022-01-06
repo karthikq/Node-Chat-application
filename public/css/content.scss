@@ -254,17 +254,6 @@
       opacity: 1;
     }
   }
-  .btn {
-    position: absolute;
-    bottom: 0;
-    width: 90%;
-
-    margin-top: 5rem;
-    margin-bottom: 2rem;
-    button {
-      @include btn();
-    }
-  }
 
   .users-list {
     width: 100%;
@@ -383,6 +372,7 @@
       color: rgb(226, 226, 226);
       text-align: center;
       font-size: 0.95rem;
+      text-transform: uppercase;
       letter-spacing: 0.5px;
     }
     .user-info-contents {
@@ -444,6 +434,14 @@
       border-radius: 5px;
     }
   }
+  .btn {
+    width: 90%;
+    margin: 5rem auto 2rem;
+
+    button {
+      @include btn();
+    }
+  }
 }
 .room-userlist {
   width: 90%;
@@ -452,10 +450,11 @@
   margin: 1rem auto;
   h2 {
     margin-bottom: 1rem;
-    color: rgba(255, 255, 255, 0.904);
-    font-weight: 400;
+    color: #9248db;
+
+    font-weight: 300;
     font-size: 1.05rem;
-    letter-spacing: 0.4px;
+    letter-spacing: 0.5px;
     text-align: right;
   }
   .room-userlist-container {

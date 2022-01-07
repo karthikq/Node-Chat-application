@@ -1,0 +1,51 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("./constant/header.ejs") -%>
+  <body>
+    <div class="profile-container">
+      <div class="profile-contents">
+        <div class="profile-img-header">
+          <img
+            src="https://images.pexels.com/photos/2775196/pexels-photo-2775196.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+            alt="profile-bg"
+          />
+        </div>
+        <div class="profile-body-container">
+          <div class="profile-body-contents">
+            <% if(typeof userDetails !== "undefined" ){%>
+            <div class="profile-body-img">
+              <img src="<%=userDetails.profileUrl%>" alt="profileimageerror" />
+            </div>
+            <%}%>
+            <span class="profile-span">Change picture</span>
+          </div>
+          <span class="upload-cancel">Cancel</span>
+        </div>
+        <div class="profile-upload-form">
+          <form class="profile-form">
+            <input type="file" id="profilechange" name="profileImg" />
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+        <div class="profile-rooms-container">
+          <h1><i class="far fa-plus-square"></i> Created Rooms</h1>
+          <div class="profile-rooms">
+            <%if(typeof userRooms !== "undefined"){%>
+            <%userRooms.forEach((room,index)=>{%>
+            <div class="profile-rooms-box">
+              <span class="profileroom-span">
+                <span> <%=index+1%>)</span>
+                <%=room.roomName%>
+              </span>
+              <span class="room-delete">Delete</span>
+            </div>
+            <%})%> <%}%>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/js/UserProfile.js"></script>
+  </body>
+</html>

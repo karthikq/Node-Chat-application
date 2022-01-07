@@ -29,7 +29,14 @@ const chatbox = document.querySelector(".chatbox");
 const submitBtn = document.querySelector("#submitBtn");
 const imageOpt = document.querySelector("#imgOpt");
 
-const CreateImg = async (userInputValue, userId, room, userInput, socket) => {
+const CreateImg = async (
+  userInputValue,
+  userId,
+  room,
+  userInput,
+  socket,
+  state
+) => {
   submitBtn.setAttribute("disabled", true);
   submitBtn.innerHTML = "Uploading";
   console.log(opt.value);
@@ -42,7 +49,7 @@ const CreateImg = async (userInputValue, userId, room, userInput, socket) => {
   try {
     const compFile = await imageCompression(userInputValue, options);
 
-    chatbox.scrollTo(0, chatbox.scrollHeight);
+    state && chatbox.scrollTo(0, chatbox.scrollHeight);
     const storageRef = ref(storage, compFile.name);
     const uploadTask = uploadBytesResumable(storageRef, compFile);
     uploadTask.on(
@@ -51,10 +58,12 @@ const CreateImg = async (userInputValue, userId, room, userInput, socket) => {
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
 
-        progessBar.style.display = "block";
-        submitBtn.setAttribute("disabled", true);
-        submitBtn.textContent = "Uploading";
-        progessBar.setAttribute("value", progress);
+        if (state) {
+          progessBar.style.display = "block";
+          submitBtn.setAttribute("disabled", true);
+          submitBtn.textContent = "Uploading";
+          progessBar.setAttribute("value", progress);
+        }
         switch (snapshot.state) {
           case "paused":
             console.log("Upload is paused");
@@ -69,24 +78,25 @@ const CreateImg = async (userInputValue, userId, room, userInput, socket) => {
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          imageOpt.style.display = "block";
-
-          imageOpt.setAttribute("src", downloadURL);
-          submitBtn.removeAttribute("disabled");
-          submitBtn.textContent = "Send";
-          socket.emit("chatMessage", {
-            userImg: downloadURL,
-            userId: userId,
-            room: room,
-          });
-          imageOpt.style.transform = "translateX(50%) scale(0.5)";
-          setTimeout(() => {
-            imageOpt.style.display = "none";
-            progessBar.style.display = "none";
-            userInput.value = "";
-            userInput.focus();
-          }, 100);
-          chatbox.scrollTo(0, chatbox.scrollHeight);
+          if (state) {
+            imageOpt.style.display = "block";
+            imageOpt.setAttribute("src", downloadURL);
+            submitBtn.removeAttribute("disabled");
+            submitBtn.textContent = "Send";
+            socket.emit("chatMessage", {
+              userImg: downloadURL,
+              userId: userId,
+              room: room,
+            });
+            imageOpt.style.transform = "translateX(50%) scale(0.5)";
+            setTimeout(() => {
+              imageOpt.style.display = "none";
+              progessBar.style.display = "none";
+              userInput.value = "";
+              userInput.focus();
+            }, 100);
+            chatbox.scrollTo(0, chatbox.scrollHeight);
+          }
         });
       }
     );

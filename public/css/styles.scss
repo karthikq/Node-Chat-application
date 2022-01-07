@@ -132,8 +132,13 @@ body {
     object-fit: cover;
   }
   .err-h1 {
+    color: #66329a;
     font-size: 1.9rem;
-    margin-bottom: 0.7rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .err-a {
+    color: rgba(68, 68, 68, 0.459);
   }
 }
 @media screen and (max-width: 1100px) {
@@ -156,6 +161,8 @@ body {
 @import "./content.scss";
 @import "./auth.scss";
 @import "./modal.scss";
+@import "./profile.scss";
+
 @media screen and (max-width: 550px) {
   .intro-contents {
     height: 90%;
@@ -170,6 +177,19 @@ body {
       width: 80%;
       margin: 0.8rem auto;
       border: 2px solid rgba(46, 156, 190, 0.514);
+    }
+  }
+  .error-contents {
+    .error-img {
+      width: 95%;
+      height: 400px;
+      object-fit: cover;
+      margin: 0 auto;
+    }
+    .err-h1 {
+      font-size: 1.6rem;
+      margin-top: 0.5rem;
+      text-align: center;
     }
   }
 }

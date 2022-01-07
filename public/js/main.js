@@ -79,7 +79,7 @@ async function createChat(userId, userInput, imageOpt, room) {
 
   if (type === "file") {
     const imageFile = userInput.files[0];
-    await CreateImg(imageFile, userId, room, userInput, socket);
+    await CreateImg(imageFile, userId, room, userInput, socket, true);
   } else {
     if (userInput) {
       socket.emit("chatMessage", {

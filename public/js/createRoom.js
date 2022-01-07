@@ -32,10 +32,12 @@ createForm2.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const roomName = e.target.elements[0].value;
-
+  createSubmitBtn.innerHTML = "Creating Room";
   if (authValue.value === "false") {
     loginModal2();
+
     window.history.pushState = "/?showlogin=" + true;
+    createSubmitBtn.innerHTML = "Create";
   } else {
     try {
       const { data } = await axios.post("/room/create", {
@@ -53,6 +55,7 @@ createForm2.addEventListener("submit", async (e) => {
           userIdValue.value
         }`;
       }
+      createSubmitBtn.innerHTML = "Create";
     } catch (error) {
       console.log(error);
     }

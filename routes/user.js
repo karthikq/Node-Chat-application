@@ -14,9 +14,10 @@ route.get("/", async (req, res) => {
       userId: req.user.userId,
     });
     const AvlRooms = await Room.find({});
+    const checkRoom = await Room.findOne({ roomName: room });
 
-    if (!room) {
-      res.redirect(`/?room=check&user=${req.user.userId}`);
+    if (!checkRoom) {
+      res.render("Error", { room, user: req.user.userId });
     } else {
       const chatDetails = await Room.findOne({ roomName: room });
 
@@ -57,11 +58,13 @@ route.post("/user/room", (req, res) => {
 
 route.post("/room/create", async (req, res) => {
   const { roomName, user } = req.body;
-  console.log(req.body);
+
   const name = roomName.replace(/\s/g, "").toLowerCase();
 
   try {
     const checkRoom = await Room.findOne({ roomName: name });
+    const userDetails = await User.findOne({ userId: user });
+
     if (checkRoom) {
       res
         .status(200)
@@ -70,14 +73,12 @@ route.post("/room/create", async (req, res) => {
       const newRoom = new Room({
         roomName: name,
         createdBy: user,
-        users: [],
+        users: userDetails,
       });
       await newRoom.save();
       // const AvlRooms = await Room.find({});
 
-      res
-        .status(200)
-        .json({ message: "room doesn't exist", errorStatus: false });
+      res.status(200).json({ message: "Creating room", errorStatus: false });
     }
   } catch (error) {
     console.log(error);
@@ -119,7 +120,7 @@ route.patch("/update/status", async (req, res) => {
       new: true,
     }
   );
-  const update2 = await Room.updateMany(
+  await Room.updateMany(
     { "chats.$[].userDetails.userId": updateUser.userId },
     {
       $set: { "chats.$[].userDetails.activeStatus": status },
@@ -160,4 +161,5 @@ route.get("/chat/prevchat/:id", async (req, res) => {
     res.json("#1");
   }
 });
+
 module.exports = route;

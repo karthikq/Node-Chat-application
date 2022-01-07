@@ -258,10 +258,13 @@
                 <% if(typeof chatusers !== "undefined"){ %>
                   <%chatusers.forEach((user)=>{ %>
                     <div class="room-userlist-box" >
-                      <div class="room-userlist-details" >
-                        <img class="user-avatar" referrerpolicy="no-referrer"  src="<%=user.profileUrl%>" alt="user profile img">
-                        <span><%=user.username%></span>
-                      </div>
+                      <a href="/profile/user/<%=user.userId%>?userId=<%=user.userId%> " style="text-decoration: none;">
+                        <div class="room-userlist-details" >
+                          <img class="user-avatar" referrerpolicy="no-referrer"  src="<%=user.profileUrl%>" alt="user profile img">
+                          <span><%=user.username%></span>
+                        </div>
+                      </a>
+                     
                
                      <% if (user.activeStatus === "offline") { %>
                           <div title="offline" class="room-user-status set-status red-s" id="<%=user.userId+2%>"  ></div>
@@ -306,6 +309,7 @@
     <script src="/js/Dropdown.js"></script>
     <script src="/js/Sidebar.js"></script>
     <script src="/js/createRoom.js"></script>
+   
     <script src="/js/CreateImg.js"  type="module" ></script>
     <script src="/js/main.js"  type="module"></script>
     <script src="/js/Images.js" type="module"></script>

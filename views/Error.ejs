@@ -8,11 +8,13 @@
       <div class="error-contents">
         <img
           class="error-img"
-          src="https://i.ibb.co/g7SsMwf/243512-P3-UB87-565-1.webp"
+          src="https://i.ibb.co/C8CMzTQ/232.webp"
           alt="error"
         />
-        <h1 class="err-h1">Room Not found</h1>
-        <a href="/">Go back</a>
+        <% if(typeof room !== "undefined"){%>
+        <h1 class="err-h1">Room <%=room%> Not found</h1>
+        <%}%>
+        <a class="err-a" href="/?room=public&user=<%=user%>">Go back</a>
       </div>
     </div>
   </body>

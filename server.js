@@ -43,6 +43,7 @@ message(io);
 
 app.use("/", require("./routes/user"));
 app.use("/auth", require("./routes/auth"));
+app.use("/profile", require("./routes/profile"));
 
 server.listen(port, () => {
   console.log("server running at port " + port);

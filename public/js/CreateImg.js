@@ -37,9 +37,10 @@ const CreateImg = async (
   socket,
   state
 ) => {
-  submitBtn.setAttribute("disabled", true);
-  submitBtn.innerHTML = "Uploading";
-  console.log(opt.value);
+  if (state) {
+    submitBtn.setAttribute("disabled", true);
+    submitBtn.innerHTML = "Uploading";
+  }
   const options = {
     maxSizeMB: 1,
     maxWidthOrHeight: 1000,
@@ -50,6 +51,7 @@ const CreateImg = async (
     const compFile = await imageCompression(userInputValue, options);
 
     state && chatbox.scrollTo(0, chatbox.scrollHeight);
+
     const storageRef = ref(storage, compFile.name);
     const uploadTask = uploadBytesResumable(storageRef, compFile);
     uploadTask.on(
@@ -63,6 +65,8 @@ const CreateImg = async (
           submitBtn.setAttribute("disabled", true);
           submitBtn.textContent = "Uploading";
           progessBar.setAttribute("value", progress);
+        } else {
+          console.log(progress);
         }
         switch (snapshot.state) {
           case "paused":
@@ -96,6 +100,8 @@ const CreateImg = async (
               userInput.focus();
             }, 100);
             chatbox.scrollTo(0, chatbox.scrollHeight);
+          } else {
+            room(downloadURL);
           }
         });
       }

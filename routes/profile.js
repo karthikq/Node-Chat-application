@@ -7,18 +7,55 @@ const route = express.Router();
 
 route.get("/user/:id", async (req, res) => {
   const profileId = req.params.id;
+  const userRooms = await Room.find({ createdBy: profileId });
+  const checkUser = await User.findOne({ userId: profileId });
 
-  try {
-    const checkUser = await User.findOne({ userId: profileId });
-    const userRooms = await Room.find({ createdBy: profileId });
-
-    if (checkUser) {
-      res.render("Profile", { userDetails: checkUser, userRooms });
+  if (req.user) {
+    if (req.user.userId === profileId) {
+      try {
+        if (checkUser) {
+          res.render("Profile", {
+            userDetails: checkUser,
+            userRooms,
+            auth: true,
+          });
+        } else {
+          res.render("Error", { room: "room", user: req.user.userId });
+        }
+      } catch (error) {
+        res.render("Error", { room: "room", user: req.user.userId });
+      }
     } else {
-      res.render("Error");
+      if (checkUser) {
+        res.render("Profile", {
+          userDetails: checkUser,
+          userRooms,
+          auth: false,
+        });
+      }
     }
-  } catch (error) {
-    res.render("Error");
+  } else {
+    res.redirect("/?showlogin=true");
+  }
+});
+
+route.patch("/user/update", async (req, res) => {
+  const { userId, username, email, profileUrl } = req.body;
+
+  const findUser = await User.findOneAndUpdate(
+    { userId },
+    {
+      $set: { username, email, profileUrl },
+    },
+    {
+      new: true,
+    }
+  );
+  if (findUser) {
+    console.log("A");
+    res.json(findUser);
+  } else {
+    console.log("S");
   }
 });
 

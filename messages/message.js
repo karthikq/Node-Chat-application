@@ -64,7 +64,7 @@ function message(io) {
           userImg
         );
         userMessage.userDetails = userDetails;
-
+        userMessage.userId = userId;
         await Room.findOneAndUpdate(
           { roomName: room },
           {

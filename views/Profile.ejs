@@ -10,7 +10,7 @@
       </div>
       <div class="profile-contents">
         <p class="profile-ptag" onclick="history.back()">
-          <i class="fas fa-home" style="margin-right: 0.3rem"></i>Home
+          Go back<i class="fas fa-undo" style="margin-left: 0.3rem"></i>
         </p>
         <div class="profile-img-header">
           <img
@@ -21,6 +21,7 @@
         <div class="profile-body-container">
           <div class="profile-body-contents">
             <% if(typeof userDetails !== "undefined" ){%>
+
             <div class="profile-body-img">
               <img
                 src="<%=userDetails.profileUrl%>"
@@ -41,6 +42,19 @@
             >Cancel</span
           >
         </div>
+        <div class="profile-body-text">
+          <p>
+            Username :
+            <span class="profile-body-text-span">
+              <%=userDetails.username%></span
+            >
+          </p>
+          <div class="profile-userStatus">
+            <p style="text-transform: capitalize">
+              Status : <%=userDetails.activeStatus%>
+            </p>
+          </div>
+        </div>
         <div class="profile-upload-form">
           <form class="profile-form">
             <% if(typeof userDetails !== "undefined" ){%>
@@ -50,19 +64,22 @@
               name="userId"
               id="loggeduserId"
             />
-            <label>Username</label>
+            <label>Username (max : 10char) </label>
             <input
               type="text"
               name="username"
               required
+              maxlength="12"
               id="profileUsername"
               value="<%=userDetails.username%>"
             />
-            <label>Email</label>
+            <span class="profile-err">Username already exists!</span>
+            <label>Email (read only)</label>
             <input
               type="email"
               name="email"
               id="profileEmail"
+              readonly
               required
               value="<%=userDetails.email%>"
             />

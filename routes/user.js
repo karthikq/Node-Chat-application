@@ -78,7 +78,9 @@ route.post("/room/create", async (req, res) => {
       await newRoom.save();
       // const AvlRooms = await Room.find({});
 
-      res.status(200).json({ message: "Creating room", errorStatus: false });
+      return res
+        .status(200)
+        .json({ message: "Creating room", errorStatus: false });
     }
   } catch (error) {
     console.log(error);

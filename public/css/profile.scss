@@ -37,11 +37,14 @@
   .profile-ptag {
     text-align: right;
     color: rgb(110, 41, 179);
-    font-size: 1.2rem;
-    font-weight: 500;
+    font-size: 1.1rem;
+    font-weight: 400;
     margin-top: 0;
-    margin-bottom: 2.5%;
+    margin-bottom: 1.2rem;
     cursor: pointer;
+    &:hover {
+      color: rgb(223, 223, 223);
+    }
   }
 }
 
@@ -57,7 +60,7 @@
   }
 }
 .profile-body-container {
-  margin: 3% 0;
+  margin: 4% 0 3%;
   width: 100%;
   height: 100%;
   display: flex;
@@ -90,14 +93,24 @@
   }
 }
 .profile-body-img {
-  width: 100px;
-  height: 100px;
-
+  width: 90px;
+  height: 90px;
+  filter: drop-shadow(0px 10px 20px rgba(161, 78, 243, 0.438));
   img {
     border-radius: 50%;
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+}
+.profile-body-text {
+  p {
+    font-size: 1rem;
+
+    color: rgb(186, 121, 252);
+  }
+  P:nth-child(2) {
+    margin: 0.5rem 0;
   }
 }
 .profile-upload-form {
@@ -156,6 +169,12 @@
       object-fit: cover;
     }
   }
+  .profile-err {
+    color: red;
+    margin-top: 0.6rem;
+    font-size: 0.8rem;
+    display: none;
+  }
   input {
     width: 95%;
     border: 2px solid rgba(102, 51, 153, 0.5);
@@ -176,7 +195,7 @@
     }
   }
   button {
-    margin-top: 3%;
+    margin: 4% 0;
     width: 8rem;
 
     padding: 0.4rem;
@@ -201,7 +220,7 @@
     margin-top: 0.5rem;
   }
   .profile-rooms {
-    margin: 3% 0;
+    margin: 1.5rem 0;
     width: 100%;
     height: 100%;
     display: flex;
@@ -247,6 +266,38 @@
       letter-spacing: 0.8px;
       &:hover {
         color: rgba(202, 202, 202, 0.87);
+      }
+    }
+  }
+}
+@media screen and(max-width:720px) {
+  .profile-img-header {
+    width: 100%;
+    height: 12rem;
+  }
+  .profile-body-img {
+    width: 70px;
+    height: 70px;
+  }
+  .profile-body-container {
+    margin: 2rem 0;
+  }
+  .profile-contents {
+    padding-top: 3%;
+    .profile-ptag {
+      font-size: 1rem;
+    }
+  }
+  .profile-rooms-container {
+    margin-top: 1.5rem;
+    h1 {
+      font-size: 1.8rem;
+    }
+    .profile-rooms {
+      margin-top: 2rem;
+      gap: 1.1rem 3rem;
+      .profile-rooms-box {
+        height: 2.1rem;
       }
     }
   }

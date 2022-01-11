@@ -42,6 +42,11 @@ route.get("/user/:id", async (req, res) => {
 route.patch("/user/update", async (req, res) => {
   const { userId, username, email, profileUrl } = req.body;
 
+  const checkuserName = await User.findOne({ username: username });
+  if (checkuserName) {
+    return res.json({ usernameExists: true });
+  }
+
   const findUser = await User.findOneAndUpdate(
     { userId },
     {
@@ -51,9 +56,32 @@ route.patch("/user/update", async (req, res) => {
       new: true,
     }
   );
+
+  await Room.updateMany(
+    { "users.userId": userId },
+    {
+      $set: {
+        "users.$.username": username,
+        "users.$.email": email,
+        "users.$.profileUrl": profileUrl,
+      },
+    }
+  );
+
+  await Room.updateMany(
+    { "chats.userId": userId },
+    {
+      "chats.$[e].userDetails.username": username,
+      "chats.$[e].userDetails.email": email,
+      "chats.$[e].userDetails.profileUrl": profileUrl,
+    },
+    {
+      arrayFilters: [{ "e.userDetails.userId": userId }],
+    }
+  );
+
   if (findUser) {
-    console.log("A");
-    res.json(findUser);
+    res.json({ findUser, usernameExists: false });
   } else {
     console.log("S");
   }

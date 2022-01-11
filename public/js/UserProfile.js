@@ -7,6 +7,8 @@ const uploadcancel = document.querySelector(".upload-cancel");
 const uploadContent = document.querySelector(".profile-upload-form");
 const profilechange = document.querySelector("#profilechange");
 const profileForm = document.querySelector(".profile-form");
+const profilebodytext = document.querySelector(".profile-body-text-span");
+const profileErr = document.querySelector(".profile-err");
 
 const profileUploadedImg = document.querySelector(".profile-uploaded-img");
 const profileImgEditIcon = document.querySelector(".profile-img-edit-icon");
@@ -102,6 +104,11 @@ profileImgEditIcon.addEventListener("click", () => {
 async function updateValue(profileUrl) {
   const username = profileUsername.value;
   const email = profileEmail.value;
+
+  if (profilebodytext.innerHTML !== username) {
+    profilebodytext.innerHTML = "Updating...";
+  }
+
   toasts.style.display = "flex";
   try {
     const { data } = await axios.patch(
@@ -114,17 +121,30 @@ async function updateValue(profileUrl) {
       }
     );
     if (data) {
-      toasts.children[0].innerHTML = "Data saved";
-      setTimeout(() => {
-        toasts.classList.add("transform-toast");
-      }, 2000);
-      setTimeout(() => {
-        toasts.classList.remove("transform-toast");
-        toasts.style.display = "none";
-        window.location.reload();
-      }, 3000);
+      if (data.usernameExists) {
+        profileErr.style.display = "block";
+      } else {
+        profileErr.style.display = "none";
+
+        profilebodytext.innerHTML = data.username;
+        toasts.children[0].innerHTML = "Data saved";
+        setTimeout(() => {
+          toasts.classList.add("transform-toast");
+        }, 2000);
+        setTimeout(() => {
+          toasts.classList.remove("transform-toast");
+          toasts.style.display = "none";
+          window.location.reload();
+        }, 3000);
+      }
     }
   } catch (error) {
     console.log(error);
   }
 }
+profileUploadcancel.addEventListener("click", () => {
+  profileUploadedImg.classList.remove("edit-profileimg");
+  profileUploadedImg.style.display = "flex";
+  profilechange.style.display = "none";
+  profileUploadcancel.style.visibility = "hidden";
+});

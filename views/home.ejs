@@ -158,7 +158,7 @@
                    <%}%> 
                 <div class="chat-user-details" >
                   <img src ="<%=text.userDetails.profileUrl%>" alt="profile Url" class="profile-img" >
-                   <span class="user-name" ><%=text.username%></span>
+                   <span class="user-name" ><%=text.userDetails.username%></span>
                    <span class="user-date" ><%=text.date%></span>
                   </div>
                   <%if(text.userText){%>
@@ -262,7 +262,7 @@
                     <div class="room-userlist-box" >
                       <a href="/profile/user/<%=activeUser.userId%>?userId=<%=activeUser.userId%> " style="text-decoration: none;">
                         <div class="room-userlist-details" >
-                          <img class="user-avatar" referrerpolicy="no-referrer"  src="<%=activeUser.profileUrl%>" alt="user profile img">
+                          <img class="user-avatar"   src="<%=activeUser.profileUrl%>" alt="user profile img">
                           <span><%=activeUser.username%></span>
                         </div>
                       </a>
@@ -287,7 +287,7 @@
                        <div class="room-userlist-box" >
                       <a href="/profile/user/<%=user.userId%>?userId=<%=user.userId%> " style="text-decoration: none;">
                         <div class="room-userlist-details" >
-                          <img class="user-avatar" referrerpolicy="no-referrer"  src="<%=user.profileUrl%>" alt="user profile img">
+                          <img class="user-avatar"   src="<%=user.profileUrl%>" alt="userprofileimg">
                           <span><%=user.username%></span>
                         </div>
                       </a>

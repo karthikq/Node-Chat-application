@@ -16,7 +16,7 @@ route.get("/", async (req, res) => {
     const AvlRooms = await Room.find({});
     const checkRoom = await Room.findOne({ roomName: room });
     if (!room) {
-      res.redirect(`/?room=public&user=${req.query.user}`);
+      res.redirect(`/?room=public&user=${req.user.userId}`);
     } else {
       if (!checkRoom) {
         res.render("Error", { room, user: req.user.userId });

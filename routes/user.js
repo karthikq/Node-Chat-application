@@ -80,7 +80,7 @@ route.post("/room/create", async (req, res) => {
 
       return res
         .status(200)
-        .json({ message: "Creating room", errorStatus: false });
+        .json({ message: "Creating room", errorStatus: false, roomName: name });
     }
   } catch (error) {
     console.log(error);

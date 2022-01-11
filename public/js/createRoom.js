@@ -44,17 +44,17 @@ createForm2.addEventListener("submit", async (e) => {
         roomName,
         user: userIdValue.value,
       });
-
-      if (data.errorStatus) {
-        createformerror.style.display = "inline-block";
-        createformerror.innerHTML = data.message;
-      } else {
-        createformerror.style.display = "none";
-        createformerror.innerHTML = data.message;
-        window.location.href = `/?room=${roomName.replace(/\s/g, "")}&user=${
-          userIdValue.value
-        }`;
+      if (data) {
+        if (data.errorStatus) {
+          createformerror.style.display = "inline-block";
+          createformerror.innerHTML = data.message;
+        } else {
+          createformerror.style.display = "none";
+          createformerror.innerHTML = data.message;
+          window.location.href = `/?room=${data.roomName}&user=${userIdValue.value}`;
+        }
       }
+
       createSubmitBtn.innerHTML = "Create";
     } catch (error) {
       console.log(error);

@@ -1561,6 +1561,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  display: none;
 }
 .toasts p,
 .transform-toast p {

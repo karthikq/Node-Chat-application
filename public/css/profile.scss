@@ -60,7 +60,7 @@
   }
 }
 .profile-body-container {
-  margin: 4% 0 3%;
+  margin: 2rem 0 3%;
   width: 100%;
   height: 100%;
   display: flex;
@@ -68,7 +68,7 @@
   align-items: center;
   color: white;
   .profile-body-contents {
-    width: 20rem;
+    width: auto;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -104,13 +104,11 @@
   }
 }
 .profile-body-text {
+  margin: 1.5rem 0;
   p {
-    font-size: 1rem;
-
-    color: rgb(186, 121, 252);
-  }
-  P:nth-child(2) {
+    font-size: 0.95rem;
     margin: 0.5rem 0;
+    color: rgb(194, 194, 194);
   }
 }
 .profile-upload-form {
@@ -130,7 +128,7 @@
   flex-direction: column;
   align-items: flex-start;
   label {
-    margin: 2.5% 0 0.5rem;
+    margin: 1.8rem 0 0.5rem;
     color: rgb(181, 107, 255);
   }
   .label-profileimg {
@@ -195,7 +193,7 @@
     }
   }
   button {
-    margin: 4% 0;
+    margin: 2rem 0;
     width: 8rem;
 
     padding: 0.4rem;
@@ -286,6 +284,27 @@
     padding-top: 3%;
     .profile-ptag {
       font-size: 1rem;
+    }
+  }
+  .profile-form {
+    label {
+      font-size: 0.9rem;
+    }
+    .profile-uploaded-img {
+      width: 120px;
+      height: 80px;
+
+      img {
+        border-radius: 50%;
+        width: 80px;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    button {
+      margin: 3.1rem 0 2rem;
+      width: 7rem;
+      padding: 0.3rem;
     }
   }
   .profile-rooms-container {

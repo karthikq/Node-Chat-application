@@ -44,7 +44,9 @@ route.patch("/user/update", async (req, res) => {
 
   const checkuserName = await User.findOne({ username: username });
   if (checkuserName) {
-    return res.json({ usernameExists: true });
+    if (checkuserName.userId !== userId) {
+      return res.json({ usernameExists: true });
+    }
   }
 
   const findUser = await User.findOneAndUpdate(

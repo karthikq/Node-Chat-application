@@ -1561,11 +1561,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  display: none;
 }
 .toasts p,
 .transform-toast p {
   margin: 0.1rem 0;
+  letter-spacing: 0.6px;
 }
 
 .transform-toast {
@@ -1813,6 +1813,16 @@ body {
 }
 
 @media screen and (max-width: 720px) {
+  .toasts,
+.transform-toast {
+    width: 80%;
+  }
+  .toasts p,
+.transform-toast p {
+    margin: 0.1rem 0;
+    font-size: 0.92rem;
+  }
+
   .profile-img-header {
     width: 100%;
     height: 12rem;

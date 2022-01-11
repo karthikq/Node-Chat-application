@@ -71,6 +71,8 @@ profileForm.addEventListener("submit", async (e) => {
   const userImage = userProfileImg.getAttribute("src");
   const PrevprofileUrl = userProfileImg.getAttribute("data-value");
 
+  profileErr.style.display = "none";
+
   if (userImage === PrevprofileUrl) {
     const value = profileUploadedImg.classList.contains("edit-profileimg");
     if (value) {
@@ -123,6 +125,7 @@ async function updateValue(profileUrl) {
     if (data) {
       if (data.usernameExists) {
         profileErr.style.display = "block";
+        toasts.children[0].innerHTML = "Username already exists!";
       } else {
         profileErr.style.display = "none";
 

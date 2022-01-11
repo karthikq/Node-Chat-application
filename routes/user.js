@@ -15,22 +15,25 @@ route.get("/", async (req, res) => {
     });
     const AvlRooms = await Room.find({});
     const checkRoom = await Room.findOne({ roomName: room });
-
-    if (!checkRoom) {
-      res.render("Error", { room, user: req.user.userId });
+    if (!room) {
+      res.redirect(`/?room=public&user=${req.query.user}`);
     } else {
-      const chatDetails = await Room.findOne({ roomName: room });
-
-      if (chatDetails) {
-        res.render("home", {
-          details: userDetails,
-          chats: chatDetails.chats,
-          chatusers: chatDetails.users,
-          auth: true,
-          AvlRooms,
-        });
+      if (!checkRoom) {
+        res.render("Error", { room, user: req.user.userId });
       } else {
-        res.render("Error");
+        const chatDetails = await Room.findOne({ roomName: room });
+
+        if (chatDetails) {
+          res.render("home", {
+            details: userDetails,
+            chats: chatDetails.chats,
+            chatusers: chatDetails.users,
+            auth: true,
+            AvlRooms,
+          });
+        } else {
+          res.render("Error");
+        }
       }
     }
   } else {

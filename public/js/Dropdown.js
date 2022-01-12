@@ -182,7 +182,7 @@ async function handleStatuschange(userId) {
 
 function infoAlert(data) {
   Swal.fire({
-    title: data.userText,
+    title: data.userText.substring(0, 20),
     imageUrl: !data.userText && data.userImg,
     imageHeight: !data.userText && 220,
     imageWidth: !data.userText && 250,

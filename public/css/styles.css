@@ -933,11 +933,11 @@ body {
   font-weight: 300;
   margin: 0.9rem 0 0.3rem;
   color: #ffffff;
-  background-color: #0b5592;
+  background-color: #621ea6af;
   padding: 0.2rem 1.35rem 0.3rem 0.7rem;
   border-radius: 10px;
   line-height: 1.8;
-  border: 1px solid #0b5592;
+  border: 1px solid #621ea6b2;
 }
 .chats p:hover {
   border: 1px solid rgba(11, 85, 146, 0.541);
@@ -1939,7 +1939,7 @@ body {
   .error-contents .error-img {
     width: 200px;
     height: 200px;
-    top: 70%;
+    top: 90%;
     margin: 0 auto;
   }
   .error-contents .err-h1 {

@@ -215,7 +215,9 @@
           <div class="user-info" >
             <div class="user-profile-img">
               <% if(typeof details !== "undefined"){ %>
-              <img src="<%=details.profileUrl%>" alt="profielurl" />
+                <a href="/profile/user/<%=details.userId%>?userId=<%=details.userId%> " style="text-decoration: none;">
+                  <img src="<%=details.profileUrl%>" alt="profielurl" />
+                </a>
               <%}else{%><img
                 src="https://www.w3schools.com/howto/img_avatar.png"
                 alt="profiel url"

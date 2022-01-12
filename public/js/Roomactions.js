@@ -1,9 +1,9 @@
 /** @format */
-console.log("S");
+
 const roomdeleteBtn = document.querySelectorAll(".room-delete");
+const profileimg = document.querySelector(".img-header");
 
 const userId = document.querySelector("#loggeduserId").value;
-console.log(userId);
 window.addEventListener("load", () => {
   roomdeleteBtn.forEach((btn, index) => {
     btn.addEventListener("click", () => {
@@ -38,4 +38,30 @@ window.addEventListener("load", () => {
   });
 });
 
-function swal(getRoomName) {}
+const imagesArray = [
+  {
+    url: "https://images.pexels.com/photos/1287145/pexels-photo-1287145.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+  },
+  {
+    url: "https://images.pexels.com/photos/2775196/pexels-photo-2775196.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+  },
+  {
+    url: "https://images.pexels.com/photos/2356059/pexels-photo-2356059.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+  },
+  {
+    url: "https://images.pexels.com/photos/6439051/pexels-photo-6439051.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+  },
+  {
+    url: "https://images.pexels.com/photos/4932184/pexels-photo-4932184.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+  },
+  {
+    url: "https://images.pexels.com/photos/1769734/pexels-photo-1769734.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+  },
+];
+
+window.addEventListener("load", () => {
+  const randomeNumber = Math.floor(Math.random() * imagesArray.length);
+  const randomImg = imagesArray[randomeNumber];
+
+  profileimg.setAttribute("src", randomImg.url);
+});

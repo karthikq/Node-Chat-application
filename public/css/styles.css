@@ -933,7 +933,7 @@ body {
   font-weight: 300;
   margin: 0.9rem 0 0.3rem;
   color: #ffffff;
-  background-color: #621ea6af;
+  background-color: #621ea6b2;
   padding: 0.2rem 1.35rem 0.3rem 0.7rem;
   border-radius: 10px;
   line-height: 1.8;
@@ -1619,7 +1619,7 @@ body {
   font-size: 1.1rem;
   font-weight: 400;
   margin-top: 0;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.8rem;
   cursor: pointer;
 }
 .profile-contents .profile-ptag:hover {
@@ -1635,6 +1635,7 @@ body {
   height: 100%;
   object-fit: cover;
   border-radius: 5px;
+  opacity: 0.8;
 }
 
 .profile-body-container {
@@ -1672,8 +1673,9 @@ body {
 }
 
 .profile-body-img {
-  width: 90px;
-  height: 90px;
+  margin-top: 1rem;
+  width: 80px;
+  height: 80px;
   filter: drop-shadow(0px 10px 20px rgba(161, 78, 243, 0.438));
 }
 .profile-body-img img {
@@ -1775,7 +1777,7 @@ body {
   border: 2px solid rebeccapurple;
 }
 .profile-form button {
-  margin: 2rem 0;
+  margin: 2.5rem 0 2rem;
   width: 8rem;
   padding: 0.4rem;
   background-color: rebeccapurple;
@@ -1826,7 +1828,6 @@ body {
 }
 .profile-rooms-container .profile-rooms-box .profileroom-span {
   width: 70%;
-  text-transform: capitalize;
   display: block;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1883,6 +1884,7 @@ body {
     padding-top: 3%;
   }
   .profile-contents .profile-ptag {
+    margin-top: 0.9rem;
     font-size: 1rem;
   }
 
@@ -1913,7 +1915,7 @@ body {
   }
   .profile-rooms-container .profile-rooms {
     margin-top: 2rem;
-    gap: 1.1rem 3rem;
+    gap: 1.5rem 3rem;
   }
   .profile-rooms-container .profile-rooms .profile-rooms-box {
     height: 2.1rem;

@@ -9,6 +9,7 @@ const profilechange = document.querySelector("#profilechange");
 const profileForm = document.querySelector(".profile-form");
 const profilebodytext = document.querySelector(".profile-body-text-span");
 const profileErr = document.querySelector(".profile-err");
+const profilesubmitbtn = document.querySelector("#profilesubmitbtn");
 
 const profileUploadedImg = document.querySelector(".profile-uploaded-img");
 const profileImgEditIcon = document.querySelector(".profile-img-edit-icon");
@@ -66,6 +67,10 @@ profileForm.addEventListener("submit", async (e) => {
   const newprofileImg = profilechange.files[0];
   const userImage = userProfileImg.getAttribute("src");
   const PrevprofileUrl = userProfileImg.getAttribute("data-value");
+
+  profilesubmitbtn.setAttribute("disabled", true);
+  profilesubmitbtn.style.opacity = 0.6;
+  profilesubmitbtn.style.cursor = "not-allowed";
 
   profileErr.style.display = "none";
 
@@ -136,6 +141,9 @@ async function updateValue(profileUrl) {
           window.location.reload();
         }, 3000);
       }
+      profilesubmitbtn.setAttribute("disabled", false);
+      profilesubmitbtn.style.opacity = "1";
+      profilesubmitbtn.style.cursor = "pointer";
     }
   } catch (error) {
     console.log(error);

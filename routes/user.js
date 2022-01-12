@@ -22,10 +22,14 @@ route.get("/", async (req, res) => {
         res.render("Error", { room, user: req.user.userId });
       } else {
         const chatDetails = await Room.findOne({ roomName: room });
+        const fetchCreatedby = await User.findOne({
+          userId: chatDetails.createdBy,
+        });
 
         if (chatDetails) {
           res.render("home", {
             details: userDetails,
+            createdby: fetchCreatedby?.username,
             chats: chatDetails.chats,
             chatusers: chatDetails.users,
             auth: true,

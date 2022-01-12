@@ -37,6 +37,11 @@
           <div class="active-room-s">
             <span></span>
           </div>
+           <div class="user-room-created">
+            <% if(typeof details !== "undefined"){%>
+              <span>Createdby : <%=createdby%> </span>
+            <%}%>  
+          </div>
           <% if(typeof details !== "undefined"){ %>
             <div class="err-msg" ><i class="fas fa-times close-icon-err"></i>
               <span><i class="fas fa-info-circle info-icon"></i> If you can't delete the message please refresh the page and then do the same.</span>
@@ -253,6 +258,7 @@
               </ul>
             </div>
           </div>
+         
           <% if(typeof details !== "undefined"){%>
             <div class="room-userlist" >
               <h2>Room Users  </h2>

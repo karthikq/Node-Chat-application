@@ -31,33 +31,40 @@ closeIcon.addEventListener("click", () => {
 createForm2.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const roomName = e.target.elements[0].value;
-  createSubmitBtn.innerHTML = "Creating Room";
-  if (authValue.value === "false") {
-    loginModal2();
+  const roomName = e.target.elements[0].value.replace(/[^a-zA-Z0-9 ]/gm, "");
 
-    window.history.pushState = "/?showlogin=" + true;
-    createSubmitBtn.innerHTML = "Create";
+  if (roomName.length == 0) {
+    createformerror.style.display = "inline-block";
+    createformerror.innerHTML = "Can't use emoji's or special characters";
   } else {
-    try {
-      const { data } = await axios.post("/room/create", {
-        roomName,
-        user: userIdValue.value,
-      });
-      if (data) {
-        if (data.errorStatus) {
-          createformerror.style.display = "inline-block";
-          createformerror.innerHTML = data.message;
-        } else {
-          createformerror.style.display = "none";
-          createformerror.innerHTML = data.message;
-          window.location.href = `/?room=${data.roomName}&user=${userIdValue.value}`;
-        }
-      }
+    createformerror.style.display = "none";
+    createSubmitBtn.innerHTML = "Creating Room";
+    if (authValue.value === "false") {
+      loginModal2();
 
+      window.history.pushState = "/?showlogin=" + true;
       createSubmitBtn.innerHTML = "Create";
-    } catch (error) {
-      console.log(error);
+    } else {
+      try {
+        const { data } = await axios.post("/room/create", {
+          roomName,
+          user: userIdValue.value,
+        });
+        if (data) {
+          if (data.errorStatus) {
+            createformerror.style.display = "inline-block";
+            createformerror.innerHTML = data.message;
+          } else {
+            createformerror.style.display = "none";
+            createformerror.innerHTML = data.message;
+            window.location.href = `/?room=${data.roomName}&user=${userIdValue.value}`;
+          }
+        }
+
+        createSubmitBtn.innerHTML = "Create";
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 });

@@ -6,13 +6,20 @@
   <body>
     <div class="error-container">
       <div class="error-contents">
-        <img
-          class="error-img"
-          src="https://i.ibb.co/C8CMzTQ/232.webp"
-          alt="error"
-        />
+        <iframe
+          src="https://giphy.com/embed/KGf5e2rjEQhQi7DrtE"
+          width="200"
+          height="200"
+          frameBorder="0"
+          class="giphy-embed error-img"
+          allowFullScreen
+        ></iframe>
+
         <% if(typeof room !== "undefined"){%>
         <h1 class="err-h1">Room <%=room%> Not found</h1>
+        <span class="err-span">Or user might have deleted the room</span>
+        <%}else{%>
+        <h1 class="err-h1">404 Not Found</h1>
         <%}%>
         <a class="err-a" href="/?room=public&user=<%=user%>">Go back</a>
       </div>

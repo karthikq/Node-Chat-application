@@ -167,4 +167,18 @@ route.get("/chat/prevchat/:id", async (req, res) => {
   }
 });
 
+route.delete("/room/delete/:id", async (req, res) => {
+  const room = req.params.id;
+  const userId = req.query.user;
+
+  const checkRoom = await Room.findOne({ roomName: room, createdBy: userId });
+
+  if (checkRoom) {
+    await Room.findOneAndDelete({ roomName: room });
+    res.json({ status: true });
+  } else {
+    res.json({ status: false });
+  }
+});
+
 module.exports = route;

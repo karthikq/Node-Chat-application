@@ -20,10 +20,6 @@ const userProfileImg = document.getElementById("userProfile");
 const userId = document.querySelector("#loggeduserId").value;
 const toasts = document.querySelector(".toasts");
 
-async function checkUser() {
-  await axios.get("");
-}
-
 profilepic.addEventListener("click", (e) => {
   changeWidth(100, 100, "visible", 0, "none", "visible");
 });

@@ -577,6 +577,16 @@
     // border-bottom-left-radius: 10px;
     animation: animatechat 1.5s cubic-bezier(0.19, 1, 0.22, 1);
     cursor: pointer;
+    &::-moz-selection {
+      /* Code for Firefox */
+      color: transparent;
+      background: transparent;
+    }
+
+    &::selection {
+      color: transparent;
+      background: transparent;
+    }
     &:hover {
       border: 2px solid rgba(255, 255, 255, 0.055);
       border-bottom: 2px solid #66329a;
@@ -611,7 +621,7 @@
           right: 0.2rem;
         }
         .dot-icon {
-          padding: 0.25rem 0.3rem;
+          padding: 0.3rem 0.35rem;
           font-size: 0.85rem;
           color: rgb(163, 163, 163);
           position: relative;
@@ -677,7 +687,7 @@
     margin-top: 0;
     border-bottom: 0;
     border: 0;
-    text-align: right;
+    text-align: left;
     &:hover {
       border: 0px solid rgba(255, 255, 255, 0);
       border-bottom: 0px solid #66329a;
@@ -777,6 +787,7 @@
   }
 }
 .chats-left {
+  text-align: left !important;
   align-self: start;
   margin-left: 1rem;
   border-bottom-left-radius: 0px;
@@ -1026,6 +1037,9 @@
     padding-bottom: 12rem;
     flex-direction: column;
     .chats {
+      .user-chat-list {
+        text-align: left;
+      }
       .chat-item {
         max-width: 80%;
         margin-right: 0rem;
@@ -1071,6 +1085,9 @@
   }
   .chats-left {
     margin-left: 0.3rem;
+    p {
+      padding: 0.2rem 0.7rem 0.3rem 1.2rem !important;
+    }
   }
   .chat-form {
     position: fixed;

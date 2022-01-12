@@ -127,7 +127,7 @@ body {
 
 .error-contents {
   width: 100%;
-  height: 90%;
+  height: 70%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -135,11 +135,11 @@ body {
   position: relative;
 }
 .error-contents .error-img {
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 250px;
   object-fit: cover;
   position: absolute;
-  top: 60%;
+  top: 90%;
   bottom: 0;
 }
 .error-contents .err-h1 {
@@ -150,6 +150,7 @@ body {
   margin-bottom: 0.5rem;
 }
 .error-contents .err-span {
+  text-align: center;
   color: #bebebe;
   font-size: 0.85rem;
   padding: 0 0.5rem;
@@ -754,6 +755,15 @@ body {
   animation: animatechat 1.5s cubic-bezier(0.19, 1, 0.22, 1);
   cursor: pointer;
 }
+.chats .chat-item::-moz-selection {
+  /* Code for Firefox */
+  color: transparent;
+  background: transparent;
+}
+.chats .chat-item::selection {
+  color: transparent;
+  background: transparent;
+}
 .chats .chat-item:hover {
   border: 2px solid rgba(255, 255, 255, 0.055);
   border-bottom: 2px solid #66329a;
@@ -789,7 +799,7 @@ body {
   right: 0.2rem;
 }
 .chats .chat-item .chatdetails .chat-dots .dot-icon {
-  padding: 0.25rem 0.3rem;
+  padding: 0.3rem 0.35rem;
   font-size: 0.85rem;
   color: #a3a3a3;
   position: relative;
@@ -850,7 +860,7 @@ body {
   margin-top: 0;
   border-bottom: 0;
   border: 0;
-  text-align: right;
+  text-align: left;
 }
 .chats .user-chat-list:hover {
   border: 0px solid rgba(255, 255, 255, 0);
@@ -946,6 +956,7 @@ body {
 }
 
 .chats-left {
+  text-align: left !important;
   align-self: start;
   margin-left: 1rem;
   border-bottom-left-radius: 0px;
@@ -1190,6 +1201,9 @@ body {
     padding-bottom: 12rem;
     flex-direction: column;
   }
+  .chatbox .chats .user-chat-list {
+    text-align: left;
+  }
   .chatbox .chats .chat-item {
     max-width: 80%;
     margin-right: 0rem;
@@ -1231,6 +1245,9 @@ body {
 
   .chats-left {
     margin-left: 0.3rem;
+  }
+  .chats-left p {
+    padding: 0.2rem 0.7rem 0.3rem 1.2rem !important;
   }
 
   .chat-form {

@@ -24,12 +24,21 @@
             <% if(typeof userDetails !== "undefined" ){%>
 
             <div class="profile-body-img">
+              <% if(userDetails.profileUrl){ %>
               <img
                 src="<%=userDetails.profileUrl%>"
                 alt="profileimageerror"
                 id="userProfile"
                 data-value="<%=userDetails.profileUrl%>"
               />
+              <% }else{ %>
+                <img
+                src="https://i.ibb.co/bKnXj7Z/147133.png"
+                alt="profileimageerror"
+                id="userProfile"
+                data-value="https://i.ibb.co/bKnXj7Z/147133.png"
+              />
+              <%} %>
             </div>
             <%}if(auth === true){%>
             <span class="profile-span"

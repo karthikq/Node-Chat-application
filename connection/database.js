@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 async function Database() {
   try {
     await mongoose.connect(
-      "mongodb+srv://admin:" +
+      "mongodb+srv://testuser:" +
         process.env.MONGO_ID +
         "@cluster0.44gx5.mongodb.net/ChatApp",
       { useNewUrlParser: true, useUnifiedTopology: true }

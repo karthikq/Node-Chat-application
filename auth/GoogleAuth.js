@@ -9,7 +9,7 @@ const apiUrl = () => {
   if (port === 3000) {
     return "http://localhost:3000";
   } else {
-    return "https://chatroomapp1.herokuapp.com";
+    return "https://node-chat-app-kzxk.onrender.com";
   }
 };
 module.exports = async function GoogleAuth(passport) {

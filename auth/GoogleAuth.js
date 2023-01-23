@@ -9,7 +9,7 @@ const apiUrl = () => {
   if (port === 3000) {
     return "http://localhost:3000";
   } else {
-    return "https://node-chat-app-kzxk.onrender.com";
+    return "https://web-production-b3d5e.up.railway.app";
   }
 };
 module.exports = async function GoogleAuth(passport) {

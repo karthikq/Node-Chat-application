@@ -14,6 +14,7 @@ const Database = require("./connection/database");
 const message = require("./messages/message");
 const GoogleAuth = require("./auth/GoogleAuth");
 const GithubAuth = require("./auth/GithubAuth");
+const path = require("path");
 Database();
 
 const app = express();
@@ -24,7 +25,7 @@ GithubAuth(passport);
 
 app.use(cors());
 app.set("view engine", "ejs");
-app.use(express.static("public"));
+app.use(path.join(__dirname, "public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
